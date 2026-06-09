@@ -1,0 +1,233 @@
+---
+const baseImage = '/f77ad3e8192aa4b6d0e48c5d9d9c0981.jpg';
+const revealImage = '/Screenshot 2026-05-29 at 11.32.02 AM.png';
+const rows = 6;
+const columns = 8;
+const tiles = Array.from({ length: rows * columns }, (_, index) => ({
+	index,
+	row: Math.floor(index / columns),
+	column: index % columns,
+	delay: index * 38,
+}));
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Staggered DOM Tile Reveal</title>
+		<meta
+			name="description"
+			content="A layered image reveal prototype using DOM tiles that animate from top-left to bottom-right."
+		/>
+	</head>
+	<body>
+		<a class="version-link" href="/">Back to versions</a>
+		<main class="reveal-shell">
+			<button
+				class="reveal-card"
+				type="button"
+				aria-label="Reveal the masked image"
+				style={`--rows:${rows}; --columns:${columns};`}
+			>
+				<img class="reveal-card__image reveal-card__image--base" src={baseImage} alt="" />
+				<span class="reveal-card__tiles" aria-hidden="true">
+					{tiles.map((tile) => (
+						<span
+							class="reveal-card__tile"
+							style={`
+								--row:${tile.row};
+								--column:${tile.column};
+								--delay:${tile.delay}ms;
+								background-image:url('${revealImage}');
+							`}
+						></span>
+					))}
+				</span>
+				<span class="reveal-card__label">Hover / tap to reveal</span>
+			</button>
+		</main>
+
+		<script>
+			const revealCard = document.querySelector('.reveal-card');
+
+			revealCard?.addEventListener('click', () => {
+				revealCard.toggleAttribute('data-revealed');
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	:root {
+		--paper: #f3eee1;
+		--ink: #1c1714;
+		--stage: #13090a;
+		background: var(--stage);
+		color: var(--paper);
+		font-family: "Avenir Next Condensed", "DIN Condensed", "Arial Narrow", sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		width: 100%;
+		min-width: 320px;
+		min-height: 100%;
+		margin: 0;
+		background: var(--stage);
+	}
+
+	button {
+		font: inherit;
+	}
+
+	.version-link {
+		position: fixed;
+		top: 18px;
+		left: 18px;
+		z-index: 10;
+		padding: 0.58rem 0.72rem 0.48rem;
+		border: 1px solid rgba(243, 238, 225, 0.6);
+		background: rgba(19, 9, 10, 0.56);
+		color: var(--paper);
+		font-size: 0.82rem;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		text-transform: uppercase;
+		backdrop-filter: blur(8px);
+	}
+
+	.reveal-shell {
+		min-height: 100svh;
+		display: grid;
+		place-items: center;
+		padding: clamp(16px, 4vw, 56px);
+		background:
+			radial-gradient(circle at 18% 14%, rgba(255, 223, 172, 0.13), transparent 32%),
+			linear-gradient(135deg, #080405, #1a0d0d 54%, #090506);
+	}
+
+	.reveal-card {
+		position: relative;
+		width: min(100%, 1180px);
+		aspect-ratio: 4 / 3;
+		padding: 0;
+		border: 0;
+		overflow: hidden;
+		isolation: isolate;
+		cursor: crosshair;
+		background: #090606;
+		box-shadow: 0 32px 90px rgba(0, 0, 0, 0.48);
+	}
+
+	.reveal-card:focus-visible {
+		outline: 3px solid var(--paper);
+		outline-offset: 8px;
+	}
+
+	.reveal-card__image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		user-select: none;
+		pointer-events: none;
+	}
+
+	.reveal-card__image--base {
+		z-index: 1;
+		filter: saturate(0.9) contrast(1.02) brightness(0.88);
+	}
+
+	.reveal-card__tiles {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		display: grid;
+		grid-template-columns: repeat(var(--columns), 1fr);
+		grid-template-rows: repeat(var(--rows), 1fr);
+		pointer-events: none;
+	}
+
+	.reveal-card__tile {
+		min-width: 0;
+		min-height: 0;
+		background-repeat: no-repeat;
+		background-size: calc(var(--columns) * 100%) calc(var(--rows) * 100%);
+		background-position:
+			calc(var(--column) * 100% / (var(--columns) - 1))
+			calc(var(--row) * 100% / (var(--rows) - 1));
+		clip-path: inset(0 100% 100% 0);
+		filter: saturate(0.94) contrast(1.06);
+		opacity: 0;
+		transform: translate3d(-8%, -8%, 0) scale(0.94);
+		transform-origin: top left;
+		transition:
+			clip-path 420ms steps(4, end),
+			opacity 120ms steps(1, end),
+			transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+		transition-delay: 0ms;
+	}
+
+	.reveal-card:is(:hover, :focus-visible, [data-revealed]) .reveal-card__tile {
+		clip-path: inset(0);
+		opacity: 1;
+		transform: translate3d(0, 0, 0) scale(1);
+		transition-delay: var(--delay);
+	}
+
+	.reveal-card:not(:hover, :focus-visible, [data-revealed]) .reveal-card__tile {
+		transition-delay: 0ms;
+	}
+
+	.reveal-card__label {
+		position: absolute;
+		left: clamp(18px, 3vw, 36px);
+		bottom: clamp(18px, 3vw, 34px);
+		z-index: 4;
+		padding: 0.55rem 0.72rem 0.45rem;
+		border: 1px solid rgba(243, 238, 225, 0.54);
+		background: rgba(12, 7, 7, 0.42);
+		color: var(--paper);
+		font-size: clamp(0.78rem, 1.4vw, 1.05rem);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		transition:
+			opacity 220ms ease,
+			transform 220ms ease;
+	}
+
+	.reveal-card:is(:hover, :focus-visible, [data-revealed]) .reveal-card__label {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	@media (max-width: 720px) {
+		.reveal-card {
+			aspect-ratio: 3 / 4;
+		}
+
+		.reveal-card__image {
+			object-position: center;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 1ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 1ms !important;
+		}
+	}
+</style>

@@ -1,0 +1,274 @@
+---
+const rows = 4;
+const columns = 5;
+const tileWidth = 601;
+const tileHeight = 416;
+const mosaicRatio = (columns * tileWidth) / (rows * tileHeight);
+const jitterPattern = [
+	[-0.68, -0.16, 0.1, '36%', '42%'],
+	[0.56, 0.12, -0.12, '54%', '45%'],
+	[-0.44, 0.08, 0.14, '42%', '55%'],
+	[0.74, -0.1, -0.08, '58%', '40%'],
+	[-0.52, 0.14, 0.1, '46%', '58%'],
+];
+const tiles = Array.from({ length: rows * columns }, (_, index) => {
+	const row = Math.floor(index / columns) + 1;
+	const col = (index % columns) + 1;
+	const jitter = jitterPattern[index % jitterPattern.length];
+
+	return {
+		index,
+		row,
+		col,
+		tilt: `${jitter[0]}deg`,
+		shiftX: `${jitter[1]}%`,
+		shiftY: `${jitter[2]}%`,
+		originX: jitter[3],
+		originY: jitter[4],
+	};
+});
+const tileRows = Array.from({ length: rows }, (_, rowIndex) =>
+	tiles.slice(rowIndex * columns, (rowIndex + 1) * columns)
+);
+
+const frameFolders = ['1', '2'];
+const frames = frameFolders.map((folder) =>
+	tiles.map((tile) => `/${folder}/${folder}Marlowe_web_images_Marlowe ${tile.row}.${tile.col}.jpg`)
+);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Two Image Once Mosaic Tilt</title>
+		<meta
+			name="description"
+			content="A two-frame 4x5 image-set hover prototype where each tile reveals once with a subtle stop-motion tilt."
+		/>
+	</head>
+	<body>
+		<a class="version-link" href="/">Back to versions</a>
+		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
+			<section
+				class="mosaic"
+				aria-label="Image fragments arranged with flex rows"
+				style={`--rows:${rows}; --columns:${columns}; --mosaic-ratio:${mosaicRatio};`}
+			>
+				{tileRows.map((row) => (
+					<div class="mosaic__row">
+						{row.map((tile) => (
+							<button
+								class="tile"
+								type="button"
+								data-tile-index={tile.index}
+								data-frame="0"
+								style={`--tilt:${tile.tilt}; --shift-x:${tile.shiftX}; --shift-y:${tile.shiftY}; --origin-x:${tile.originX}; --origin-y:${tile.originY};`}
+								aria-label={`Reveal image fragment ${tile.index + 1}`}
+							>
+								<img
+									class="tile__image"
+									src={frames[0][tile.index]}
+									width={tileWidth}
+									height={tileHeight}
+									alt=""
+								/>
+								<span class="tile__flash"></span>
+							</button>
+						))}
+					</div>
+				))}
+			</section>
+		</main>
+
+		<script define:vars={{ frames }}>
+			const tiles = [...document.querySelectorAll('.tile')];
+			const revealFrame = 1;
+
+			function revealTile(tile) {
+				if (tile.dataset.revealed === 'true') return;
+
+				const image = tile.querySelector('.tile__image');
+				const tileIndex = Number(tile.dataset.tileIndex);
+				tile.dataset.frame = String(revealFrame);
+				tile.dataset.revealed = 'true';
+				image.src = frames[revealFrame][tileIndex];
+				tile.dataset.revealing = 'true';
+				window.setTimeout(() => delete tile.dataset.revealing, 420);
+			}
+
+			tiles.forEach((tile) => {
+				tile.addEventListener('pointerenter', () => revealTile(tile));
+				tile.addEventListener('focus', () => revealTile(tile));
+				tile.addEventListener('click', () => revealTile(tile));
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	:root {
+		--focus: #fff7e7;
+		background: #111;
+		color: #111;
+		font-family: "Avenir Next Condensed", "DIN Condensed", "Arial Narrow", sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		width: 100%;
+		min-width: 320px;
+		min-height: 100%;
+		margin: 0;
+		background: #111;
+	}
+
+	button {
+		font: inherit;
+	}
+
+	.version-link {
+		position: fixed;
+		top: 18px;
+		left: 18px;
+		z-index: 10;
+		padding: 0.58rem 0.72rem 0.48rem;
+		border: 1px solid rgba(255, 247, 231, 0.6);
+		background: rgba(17, 17, 17, 0.56);
+		color: #fff7e7;
+		font-size: 0.82rem;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		text-transform: uppercase;
+		backdrop-filter: blur(8px);
+	}
+
+	.mosaic-shell {
+		min-height: 100svh;
+		display: grid;
+		place-items: center;
+		padding: clamp(14px, 3vw, 34px);
+		overflow: hidden;
+		background:
+			radial-gradient(circle at 18% 16%, rgba(255, 247, 231, 0.12), transparent 30%),
+			linear-gradient(135deg, #070707, #1a1510 56%, #0b0a08);
+	}
+
+	.mosaic {
+		--tile-gap: clamp(3px, 0.55vw, 8px);
+		--mosaic-padding: clamp(4px, 0.7vw, 10px);
+		position: relative;
+		width: min(
+			100%,
+			calc(
+				(100svh - (var(--mosaic-padding) * 2) - ((var(--rows) - 1) * var(--tile-gap))) *
+					var(--mosaic-ratio)
+			)
+		);
+		max-height: 100svh;
+		display: flex;
+		flex-direction: column;
+		gap: var(--tile-gap);
+		padding: var(--mosaic-padding);
+		overflow: hidden;
+		isolation: isolate;
+		background: #181411;
+		box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+	}
+
+	.mosaic::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		pointer-events: none;
+		background:
+			linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 30%, rgba(0, 0, 0, 0.28)),
+			repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 8px);
+		opacity: 0.75;
+	}
+
+	.mosaic__row {
+		display: flex;
+		gap: var(--tile-gap);
+		width: 100%;
+		line-height: 0;
+	}
+
+	.tile {
+		position: relative;
+		display: block;
+		flex: 0 0 calc((100% - ((var(--columns) - 1) * var(--tile-gap))) / var(--columns));
+		min-width: 0;
+		padding: 0;
+		border: 0;
+		overflow: hidden;
+		cursor: crosshair;
+		background: transparent;
+		box-shadow:
+			0 1px 2px rgba(0, 0, 0, 0.2),
+			0 4px 12px rgba(0, 0, 0, 0.22);
+		line-height: 0;
+		transform: translate3d(0, 0, 0) rotate(0deg);
+		transform-origin: var(--origin-x) var(--origin-y);
+		transition: transform 120ms steps(2, end);
+	}
+
+	.tile:hover,
+	.tile:focus-visible,
+	.tile[data-revealed="true"] {
+		z-index: 4;
+		transform: translate3d(var(--shift-x), var(--shift-y), 0) rotate(var(--tilt));
+	}
+
+	.tile:focus-visible {
+		z-index: 5;
+		outline: 3px solid var(--focus);
+		outline-offset: -7px;
+	}
+
+	.tile__image {
+		display: block;
+		width: 100%;
+		height: auto;
+		filter: contrast(1.05) saturate(0.86) grayscale(0.1);
+		transform: translate3d(0, 0, 0) scale(1.01);
+		transition: filter 120ms steps(2, end);
+		user-select: none;
+		pointer-events: none;
+	}
+
+	.tile:hover .tile__image,
+	.tile:focus-visible .tile__image,
+	.tile[data-revealed="true"] .tile__image {
+		filter: contrast(1.18) saturate(1.04);
+	}
+
+	.tile__flash {
+		position: absolute;
+		inset: 0;
+		display: block;
+		background: #fff7e7;
+		opacity: 0;
+		mix-blend-mode: screen;
+		pointer-events: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 1ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 1ms !important;
+		}
+	}
+</style>

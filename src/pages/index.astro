@@ -1,0 +1,246 @@
+---
+const versions = [
+	{
+		href: '/staggered-reveal/',
+		kicker: 'Current',
+		title: 'Staggered DOM Tile Reveal',
+		description:
+			'Two stacked images with a top-left to bottom-right sequential tile reveal.',
+	},
+	{
+		href: '/image-set-hover/',
+		kicker: 'Earlier',
+		title: 'Three Image Set Hover Grid',
+		description:
+			'The 4x5 square setup using the prepared image fragments in public/1, public/2, and public/3.',
+	},
+	{
+		href: '/image-set-flex/',
+		kicker: 'Alignment Test',
+		title: 'Flex Image Set Mosaic',
+		description:
+			'The same 4x5 image fragments arranged as flex rows with natural image height and no cover cropping.',
+	},
+	{
+		href: '/image-set-flex-two/',
+		kicker: 'Two Frame Test',
+		title: 'Two Image Flex Mosaic',
+		description:
+			'The flex-row image mosaic limited to the first two prepared image sets.',
+	},
+	{
+		href: '/image-set-flex-two-once/',
+		kicker: 'One Reveal Test',
+		title: 'Two Image Once Mosaic',
+		description:
+			'The two-frame flex mosaic where each tile can reveal to the second image only once.',
+	},
+	{
+		href: '/image-set-flex-two-once-tilt/',
+		kicker: 'Tilt Test',
+		title: 'Two Image Once Mosaic Tilt',
+		description:
+			'The two-frame once mosaic with a slight stop-motion tile tilt on hover.',
+	},
+	{
+		href: '/image-set-flex-two-once-tilt-paper/',
+		kicker: 'Paper Test',
+		title: 'Two Image Once Mosaic Paper',
+		description:
+			'The tilted once mosaic duplicated with subtle torn-paper tile edges.',
+	},
+	{
+		href: '/image-set-flex-two-once-tilt-paper-menu/',
+		kicker: 'Menu Test',
+		title: 'Two Image Mosaic Menu Scatter',
+		description:
+			'The paper mosaic duplicated with a menu reveal that scatters the image tiles outward.',
+	},
+	{
+		href: '/image-set-flex-locked/',
+		kicker: 'Interaction Test',
+		title: 'Locked Flex Mosaic',
+		description:
+			'The flex-row image mosaic with one-at-a-time reveals and round-based frame progression.',
+	},
+];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="https://use.typekit.net/duj0xcr.css" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Reveal Prototype Log</title>
+		<meta name="description" content="A version log for the image reveal prototypes." />
+	</head>
+	<body>
+		<main class="version-log">
+			<section class="version-log__intro" aria-labelledby="page-title">
+				<p class="eyebrow">Prototype Log</p>
+				<h1 id="page-title">Image reveal versions</h1>
+				<p>
+					Use these links to compare the current staggered reveal with the earlier
+					fragmented image-set hover versions.
+				</p>
+			</section>
+
+			<nav class="version-grid" aria-label="Prototype versions">
+				{versions.map((version) => (
+					<a class="version-card" href={version.href}>
+						<span>{version.kicker}</span>
+						<strong>{version.title}</strong>
+						<small>{version.description}</small>
+					</a>
+				))}
+			</nav>
+		</main>
+	</body>
+</html>
+
+<style>
+	:root {
+		--paper: #f4eedf;
+		--muted: rgba(244, 238, 223, 0.7);
+		--edge: rgba(244, 238, 223, 0.22);
+		--stage: #13090a;
+		background: var(--stage);
+		color: var(--paper);
+		font-family: neue-haas-grotesk-display, sans-serif;
+		font-style: normal;
+		font-weight: 500;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		min-width: 320px;
+		min-height: 100%;
+		margin: 0;
+		background: var(--stage);
+	}
+
+	.version-log {
+		min-height: 100svh;
+		display: grid;
+		align-content: center;
+		gap: clamp(28px, 5vw, 56px);
+		padding: clamp(24px, 7vw, 92px);
+		background:
+			radial-gradient(circle at 16% 18%, rgba(229, 174, 93, 0.17), transparent 30%),
+			radial-gradient(circle at 88% 82%, rgba(112, 85, 32, 0.34), transparent 28%),
+			linear-gradient(135deg, #080405, #1b0c0d 58%, #090506);
+	}
+
+	.version-log__intro {
+		max-width: 760px;
+	}
+
+	.eyebrow {
+		margin: 0 0 0.8rem;
+		color: var(--muted);
+		font-size: clamp(0.78rem, 1.5vw, 1rem);
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		max-width: 9ch;
+		margin: 0;
+		font-size: clamp(4.2rem, 13vw, 11rem);
+		font-family: ivyora-display, serif;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 0.82;
+		letter-spacing: -0.075em;
+		text-transform: uppercase;
+	}
+
+	p {
+		max-width: 42rem;
+		margin: 1.25rem 0 0;
+		color: var(--muted);
+		font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+		line-height: 1.35;
+	}
+
+	.version-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(14px, 2vw, 22px);
+		max-width: 980px;
+	}
+
+	.version-card {
+		min-height: 240px;
+		display: grid;
+		align-content: end;
+		gap: 0.9rem;
+		padding: clamp(20px, 3vw, 34px);
+		border: 1px solid var(--edge);
+		background:
+			linear-gradient(145deg, rgba(244, 238, 223, 0.11), transparent 54%),
+			rgba(255, 255, 255, 0.035);
+		color: inherit;
+		text-decoration: none;
+		transition:
+			background 180ms ease,
+			border-color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.version-card:hover,
+	.version-card:focus-visible {
+		border-color: rgba(244, 238, 223, 0.74);
+		background:
+			linear-gradient(145deg, rgba(244, 238, 223, 0.17), transparent 54%),
+			rgba(255, 255, 255, 0.06);
+		transform: translateY(-4px);
+	}
+
+	.version-card:focus-visible {
+		outline: 3px solid var(--paper);
+		outline-offset: 6px;
+	}
+
+	.version-card span {
+		color: var(--muted);
+		font-size: 0.78rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+
+	.version-card strong {
+		max-width: 10ch;
+		font-size: clamp(2.2rem, 5vw, 4.2rem);
+		font-family: ivyora-display, serif;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 0.9;
+		letter-spacing: -0.055em;
+		text-transform: uppercase;
+	}
+
+	.version-card small {
+		max-width: 25rem;
+		color: var(--muted);
+		font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+		line-height: 1.35;
+	}
+
+	@media (max-width: 760px) {
+		.version-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.version-card {
+			min-height: 210px;
+		}
+	}
+</style>

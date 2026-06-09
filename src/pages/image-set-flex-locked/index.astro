@@ -1,0 +1,297 @@
+---
+const rows = 4;
+const columns = 5;
+const tileWidth = 601;
+const tileHeight = 416;
+const mosaicRatio = (columns * tileWidth) / (rows * tileHeight);
+const tiles = Array.from({ length: rows * columns }, (_, index) => ({
+	index,
+	row: Math.floor(index / columns) + 1,
+	col: (index % columns) + 1,
+}));
+const tileRows = Array.from({ length: rows }, (_, rowIndex) =>
+	tiles.slice(rowIndex * columns, (rowIndex + 1) * columns)
+);
+
+const frameFolders = ['1', '2', '3'];
+const frames = frameFolders.map((folder) =>
+	tiles.map((tile) => `/${folder}/${folder}Marlowe_web_images_Marlowe ${tile.row}.${tile.col}.jpg`)
+);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Image Set Flex Mosaic Locked</title>
+		<meta
+			name="description"
+			content="A 4x5 image-set hover prototype with flex rows, natural image proportions, and round-based reveal locking."
+		/>
+	</head>
+	<body>
+		<a class="version-link" href="/">Back to versions</a>
+		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
+			<section
+				class="mosaic"
+				aria-label="Image fragments arranged with flex rows"
+				style={`--columns:${columns}; --mosaic-ratio:${mosaicRatio};`}
+			>
+				{tileRows.map((row) => (
+					<div class="mosaic__row">
+						{row.map((tile) => (
+							<button
+								class="tile"
+								type="button"
+								data-tile-index={tile.index}
+								data-frame="0"
+								aria-label={`Reveal image fragment ${tile.index + 1}`}
+							>
+								<img
+									class="tile__image"
+									src={frames[0][tile.index]}
+									width={tileWidth}
+									height={tileHeight}
+									alt=""
+								/>
+								<span class="tile__flash"></span>
+							</button>
+						))}
+					</div>
+				))}
+			</section>
+		</main>
+
+		<script define:vars={{ frames }}>
+			const mosaic = document.querySelector('.mosaic');
+			const tiles = [...document.querySelectorAll('.tile')];
+			const revealDuration = 430;
+			let isLocked = false;
+			let targetFrame = 1;
+			const revealedThisRound = new Set();
+
+			function updateTile(tile, frameIndex) {
+				const image = tile.querySelector('.tile__image');
+				const tileIndex = Number(tile.dataset.tileIndex);
+				tile.dataset.frame = String(frameIndex);
+				image.src = frames[frameIndex][tileIndex];
+				tile.dataset.revealing = 'true';
+				window.setTimeout(() => delete tile.dataset.revealing, revealDuration);
+			}
+
+			function requestReveal(tile) {
+				if (isLocked) return;
+
+				const tileIndex = Number(tile.dataset.tileIndex);
+				if (revealedThisRound.has(tileIndex)) return;
+
+				isLocked = true;
+				mosaic.dataset.locked = 'true';
+
+				updateTile(tile, targetFrame);
+				revealedThisRound.add(tileIndex);
+
+				window.setTimeout(() => {
+					if (revealedThisRound.size === tiles.length) {
+						revealedThisRound.clear();
+						targetFrame = (targetFrame + 1) % frames.length;
+					}
+
+					isLocked = false;
+					delete mosaic.dataset.locked;
+				}, revealDuration);
+			}
+
+			tiles.forEach((tile) => {
+				const advance = () => requestReveal(tile);
+
+				tile.addEventListener('pointerenter', advance);
+				tile.addEventListener('focus', advance);
+				tile.addEventListener('click', advance);
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	:root {
+		--focus: #fff7e7;
+		background: #111;
+		color: #111;
+		font-family: "Avenir Next Condensed", "DIN Condensed", "Arial Narrow", sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		width: 100%;
+		min-width: 320px;
+		min-height: 100%;
+		margin: 0;
+		background: #111;
+	}
+
+	button {
+		font: inherit;
+	}
+
+	.version-link {
+		position: fixed;
+		top: 18px;
+		left: 18px;
+		z-index: 10;
+		padding: 0.58rem 0.72rem 0.48rem;
+		border: 1px solid rgba(255, 247, 231, 0.6);
+		background: rgba(17, 17, 17, 0.56);
+		color: #fff7e7;
+		font-size: 0.82rem;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		text-transform: uppercase;
+		backdrop-filter: blur(8px);
+	}
+
+	.mosaic-shell {
+		min-height: 100svh;
+		display: grid;
+		place-items: center;
+		padding: clamp(14px, 3vw, 34px);
+		overflow: hidden;
+		background:
+			radial-gradient(circle at 18% 16%, rgba(255, 247, 231, 0.12), transparent 30%),
+			linear-gradient(135deg, #070707, #1a1510 56%, #0b0a08);
+	}
+
+	.mosaic {
+		position: relative;
+		width: min(100%, calc(100svh * var(--mosaic-ratio)));
+		max-height: 100svh;
+		overflow: hidden;
+		isolation: isolate;
+		background: #d8d0c3;
+		box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+	}
+
+	.mosaic::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		pointer-events: none;
+		background:
+			linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 30%, rgba(0, 0, 0, 0.28)),
+			repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 8px);
+		opacity: 0.75;
+	}
+
+	.mosaic[data-locked] {
+		cursor: wait;
+	}
+
+	.mosaic__row {
+		display: flex;
+		width: 100%;
+		line-height: 0;
+	}
+
+	.tile {
+		position: relative;
+		display: block;
+		flex: 0 0 calc(100% / var(--columns));
+		min-width: 0;
+		padding: 0;
+		border: 0;
+		overflow: hidden;
+		cursor: crosshair;
+		background: transparent;
+		line-height: 0;
+	}
+
+	.mosaic[data-locked] .tile {
+		pointer-events: none;
+		cursor: wait;
+	}
+
+	.tile:focus-visible {
+		z-index: 5;
+		outline: 3px solid var(--focus);
+		outline-offset: -7px;
+	}
+
+	.tile__image {
+		display: block;
+		width: 100%;
+		height: auto;
+		filter: contrast(1.05) saturate(0.86) grayscale(0.1);
+		transform: translate3d(0, 0, 0) scale(1.01);
+		transition: filter 160ms steps(2, end);
+		user-select: none;
+		pointer-events: none;
+	}
+
+	.tile:hover .tile__image,
+	.tile:focus-visible .tile__image,
+	.tile[data-revealing] .tile__image {
+		filter: contrast(1.18) saturate(1.04);
+	}
+
+	.tile[data-revealing] .tile__image {
+		animation: stop-pop 340ms steps(3, end);
+	}
+
+	.tile__flash {
+		position: absolute;
+		inset: 0;
+		display: block;
+		background: #fff7e7;
+		opacity: 0;
+		mix-blend-mode: screen;
+		pointer-events: none;
+	}
+
+	.tile[data-revealing] .tile__flash {
+		animation: flash-frame 340ms steps(2, end);
+	}
+
+	@keyframes stop-pop {
+		0% {
+			transform: translate3d(-1%, 1%, 0) scale(1.035);
+		}
+
+		48% {
+			transform: translate3d(1%, -1%, 0) scale(1.01);
+		}
+
+		100% {
+			transform: translate3d(0, 0, 0) scale(1.02);
+		}
+	}
+
+	@keyframes flash-frame {
+		0%,
+		100% {
+			opacity: 0;
+		}
+
+		36% {
+			opacity: 0.34;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 1ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 1ms !important;
+		}
+	}
+</style>

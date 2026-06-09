@@ -1,0 +1,235 @@
+---
+const rows = 4;
+const columns = 5;
+const tiles = Array.from({ length: rows * columns }, (_, index) => ({
+	index,
+	row: Math.floor(index / columns) + 1,
+	col: (index % columns) + 1,
+}));
+
+const frameFolders = ['1', '2', '3'];
+const frames = frameFolders.map((folder) =>
+	tiles.map((tile) => `/${folder}/${folder}Marlowe_web_images_Marlowe ${tile.row}.${tile.col}.jpg`)
+);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Image Set Hover Grid</title>
+		<meta
+			name="description"
+			content="A full-screen image grid where each square swaps between three prepared image sets on hover."
+		/>
+	</head>
+	<body>
+		<a class="version-link" href="/">Back to versions</a>
+		<main class="hero-grid" aria-label="Interactive stop-motion image grid">
+			{tiles.map((tile) => (
+				<button
+					class="tile"
+					type="button"
+					style={`--image:url('${frames[0][tile.index]}');`}
+					data-tile-index={tile.index}
+					data-frame="0"
+					data-next-frame="1"
+					aria-label={`Reveal image fragment ${tile.index + 1}`}
+				>
+					<span class="tile__image"></span>
+					<span class="tile__flash"></span>
+				</button>
+			))}
+		</main>
+
+		<script define:vars={{ frames }}>
+			const tiles = [...document.querySelectorAll('.tile')];
+
+			function updateTile(tile, frameIndex) {
+				const nextIndex = (frameIndex + 1) % frames.length;
+				const tileIndex = Number(tile.dataset.tileIndex);
+				tile.dataset.frame = String(frameIndex);
+				tile.dataset.nextFrame = String(nextIndex);
+				tile.style.setProperty('--image', `url('${frames[frameIndex][tileIndex]}')`);
+				tile.dataset.revealing = 'true';
+				window.setTimeout(() => delete tile.dataset.revealing, 420);
+			}
+
+			tiles.forEach((tile) => {
+				const advance = () => updateTile(tile, Number(tile.dataset.nextFrame));
+
+				tile.addEventListener('pointerenter', advance);
+				tile.addEventListener('focus', advance);
+				tile.addEventListener('click', advance);
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	:root {
+		--focus: #fff7e7;
+		background: #111;
+		color: #111;
+		font-family: "Avenir Next Condensed", "DIN Condensed", "Arial Narrow", sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		width: 100%;
+		min-width: 320px;
+		min-height: 100%;
+		margin: 0;
+		overflow: hidden;
+		background: #111;
+	}
+
+	button {
+		font: inherit;
+	}
+
+	.version-link {
+		position: fixed;
+		top: 18px;
+		left: 18px;
+		z-index: 10;
+		padding: 0.58rem 0.72rem 0.48rem;
+		border: 1px solid rgba(255, 247, 231, 0.6);
+		background: rgba(17, 17, 17, 0.56);
+		color: #fff7e7;
+		font-size: 0.82rem;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		text-transform: uppercase;
+		backdrop-filter: blur(8px);
+	}
+
+	.hero-grid {
+		position: relative;
+		width: 100vw;
+		height: 100svh;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-template-rows: repeat(4, 1fr);
+		overflow: hidden;
+		isolation: isolate;
+		background: #d8d0c3;
+	}
+
+	.hero-grid::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		pointer-events: none;
+		background:
+			linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 30%, rgba(0, 0, 0, 0.28)),
+			repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 8px);
+		opacity: 0.75;
+	}
+
+	.tile {
+		position: relative;
+		min-width: 0;
+		min-height: 0;
+		padding: 0;
+		border: 0;
+		overflow: hidden;
+		cursor: crosshair;
+		background: transparent;
+	}
+
+	.tile:focus-visible {
+		z-index: 5;
+		outline: 3px solid var(--focus);
+		outline-offset: -7px;
+	}
+
+	.tile__image,
+	.tile__flash {
+		position: absolute;
+		inset: -2px;
+		display: block;
+	}
+
+	.tile__image {
+		background-image: var(--image);
+		background-size: cover;
+		background-position: center;
+		filter: contrast(1.05) saturate(0.86) grayscale(0.1);
+		transform: translate3d(0, 0, 0) scale(1.02);
+		transition: filter 160ms steps(2, end);
+	}
+
+	.tile:nth-child(3n) .tile__image {
+		transform: translate3d(-1.3%, 0.8%, 0) scale(1.045);
+	}
+
+	.tile:nth-child(4n + 1) .tile__image {
+		transform: translate3d(1.1%, -1%, 0) scale(1.04);
+	}
+
+	.tile:nth-child(5n + 2) .tile__image {
+		transform: translate3d(-0.6%, -1.1%, 0) scale(1.035);
+	}
+
+	.tile:hover .tile__image,
+	.tile:focus-visible .tile__image,
+	.tile[data-revealing] .tile__image {
+		animation: stop-pop 340ms steps(3, end);
+		filter: contrast(1.18) saturate(1.04);
+	}
+
+	.tile__flash {
+		background: #fff7e7;
+		opacity: 0;
+		mix-blend-mode: screen;
+	}
+
+	.tile[data-revealing] .tile__flash {
+		animation: flash-frame 340ms steps(2, end);
+	}
+
+	@keyframes stop-pop {
+		0% {
+			transform: translate3d(-2%, 1%, 0) scale(1.07);
+		}
+
+		48% {
+			transform: translate3d(2%, -1%, 0) scale(1.025);
+		}
+
+		100% {
+			transform: translate3d(0, 0, 0) scale(1.045);
+		}
+	}
+
+	@keyframes flash-frame {
+		0%,
+		100% {
+			opacity: 0;
+		}
+
+		36% {
+			opacity: 0.34;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 1ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 1ms !important;
+		}
+	}
+</style>

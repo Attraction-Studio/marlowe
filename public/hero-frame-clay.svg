@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1400">
+  <defs>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency=".76" numOctaves="5" seed="37"/>
+      <feColorMatrix type="saturate" values=".25"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .2"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="warm" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#dfc8a5"/>
+      <stop offset=".43" stop-color="#755947"/>
+      <stop offset=".72" stop-color="#2d2b2a"/>
+      <stop offset="1" stop-color="#111"/>
+    </linearGradient>
+    <pattern id="weave" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(20)">
+      <path d="M0 3h10M0 8h10" stroke="#fff4dc" stroke-opacity=".13" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="1400" fill="#f2e9d8"/>
+  <path d="M885 8c-85 104-126 215-123 332 2 96 31 186 86 272 52 82 62 164 31 247-22 59-64 110-126 153-56 39-75 101-56 186 19 87 63 154 132 202H462c18-95-22-176-121-243-87-59-128-135-124-228 5-99-43-191-143-275C-2 592-20 495 20 363 58 238 148 145 290 83 426 24 625-1 885 8Z" fill="url(#warm)"/>
+  <path d="M142 217c127-50 252-42 375 25 72 39 118 88 139 147 21 61 4 101-50 120-62 23-144 5-247-55-101-58-219-67-354-27 7-88 53-158 137-210Z" fill="#b59276"/>
+  <path d="M0 552c108-59 214-70 317-32 91 33 137 93 139 180 2 97-48 171-149 222-87 44-189 57-307 38Z" fill="#55483f"/>
+  <path d="M231 650c77 36 115 91 114 165-1 77-45 130-130 160-70 24-142 23-215-4V715c71-69 148-91 231-65Z" fill="#2b2b2b"/>
+  <path d="M577 759c100 72 148 172 144 299-4 130-45 244-122 342H342c26-79 10-152-48-219-49-56-63-118-42-186 39-125 147-204 325-236Z" fill="#22263a"/>
+  <path d="M707 1035c84 6 149 42 193 107v258H651c-16-125 3-246 56-365Z" fill="#c27a55"/>
+  <path d="M0 1135c89 36 140 90 153 161 8 45-2 79-30 104H0Z" fill="#44413a"/>
+  <g fill="#17130f">
+    <circle cx="82" cy="637" r="24"/>
+    <circle cx="96" cy="703" r="21"/>
+    <circle cx="113" cy="764" r="17"/>
+  </g>
+  <path d="M0 0h900v1400H0z" fill="url(#weave)" opacity=".92"/>
+  <rect width="900" height="1400" filter="url(#grain)" opacity=".78"/>
+</svg>
