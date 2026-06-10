@@ -73,7 +73,7 @@ const frames = frameFolders.map((folder) =>
 			<a class="site-logo" href="/" aria-label="Marlowe home">
 				<span class="site-logo__mark" aria-hidden="true"></span>
 			</a>
-			<a class="site-link site-link--right" href="mailto:book@marlowe.co.nz">BOOK <span class="text-serif">TABLE</span></a>
+			<a class="site-link site-link--right" href="mailto:hello@marlowe.co.nz">BOOK <span class="text-serif">TABLE</span></a>
 		</header>
 		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
 			<section
@@ -140,7 +140,7 @@ const frames = frameFolders.map((folder) =>
 			</nav>
 		</aside>
 		<footer class="site-footer" aria-label="Site footer">
-			<a class="site-footer__contact" href="mailto:book@marlowe.co.nz">BOOK@<span class="text-serif">MARLOWE.CO.NZ</span></a>
+			<a class="site-footer__contact" href="mailto:hello@marlowe.co.nz">hello@<span class="text-serif">MARLOWE.CO.NZ</span></a>
 			<p class="site-footer__centre">
 				211 HIGH STREET<br />
 				CHRISTCHURCH, <span class="text-serif">NEW ZEALAND</span><br />
@@ -307,6 +307,12 @@ const frames = frameFolders.map((folder) =>
 		background: currentColor;
 		mask: url("/Marlowe_logo-dark.svg") center / contain no-repeat;
 		-webkit-mask: url("/Marlowe_logo-dark.svg") center / contain no-repeat;
+	}
+
+	body[data-menu-open="true"] .site-logo__mark {
+		aspect-ratio: 896 / 385.08;
+		mask-image: url("/Marlowe_logo-dark-italic.svg");
+		-webkit-mask-image: url("/Marlowe_logo-dark-italic.svg");
 	}
 
 	.text-serif {
