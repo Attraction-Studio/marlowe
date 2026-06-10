@@ -70,7 +70,9 @@ const frames = frameFolders.map((folder) =>
 			>
 				MENU
 			</button>
-			<a class="site-logo" href="/" aria-label="Marlowe home">MARLOWE</a>
+			<a class="site-logo" href="/" aria-label="Marlowe home">
+				<img src="/Marlowe_logo-dark.svg" alt="MARLOWE" />
+			</a>
 			<a class="site-link site-link--right" href="mailto:book@marlowe.co.nz">BOOK <span class="text-serif">TABLE</span></a>
 		</header>
 		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
@@ -281,11 +283,15 @@ const frames = frameFolders.map((folder) =>
 
 	.site-logo {
 		justify-self: center;
-		font-family: ivyora-display, serif;
-		font-size: clamp(1.1rem, 2vw, 1.7rem);
-		font-style: normal;
-		font-weight: 400;
-		letter-spacing: 0.08em;
+		display: block;
+		width: clamp(8.5rem, 13vw, 15rem);
+		line-height: 0;
+	}
+
+	.site-logo img {
+		display: block;
+		width: 100%;
+		height: auto;
 	}
 
 	.text-serif {
