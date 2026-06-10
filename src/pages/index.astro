@@ -68,10 +68,10 @@ const frames = frameFolders.map((folder) =>
 				aria-expanded="false"
 				data-menu-toggle
 			>
-				Menu
+				MENU
 			</button>
-			<a class="site-logo" href="/" aria-label="Marlowe home">Marlowe</a>
-			<a class="site-link site-link--right" href="mailto:book@marlowe.co.nz">Book table</a>
+			<a class="site-logo" href="/" aria-label="Marlowe home">MARLOWE</a>
+			<a class="site-link site-link--right" href="mailto:book@marlowe.co.nz">BOOK <span class="text-serif">TABLE</span></a>
 		</header>
 		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
 			<section
@@ -106,37 +106,38 @@ const frames = frameFolders.map((folder) =>
 		</main>
 		<aside class="menu-panel" id="menu-panel" aria-label="Restaurant menus" aria-hidden="true">
 			<nav class="menu-panel__inner" aria-label="Marlowe menu links">
-				<p class="menu-panel__kicker">Menus</p>
+				<p class="menu-panel__kicker">MENUS</p>
 				<div class="menu-panel__preview" aria-hidden="true">
 					<img src="/menu-draft.jpg" alt="" data-menu-preview-image />
 				</div>
 				<div class="menu-panel__links">
 					<a class="menu-panel__item is-active" href="/menu-draft.jpg" target="_blank" rel="noopener noreferrer" data-menu-item data-preview="/menu-draft.jpg" style="--item-index: 0; --item-x: 14vw;">
 						<span>01.</span>
-						<strong>Breakfast</strong>
+						<strong>BREAKFAST</strong>
 					</a>
 					<a class="menu-panel__item" href="/menu-draft.jpg" target="_blank" rel="noopener noreferrer" data-menu-item data-preview="/menu-draft.jpg" style="--item-index: 1; --item-x: 28vw;">
 						<span>02.</span>
-						<strong>Lunch</strong>
+						<strong>LUNCH</strong>
 					</a>
 					<a class="menu-panel__item" href="/menu-draft.jpg" target="_blank" rel="noopener noreferrer" data-menu-item data-preview="/menu-draft.jpg" style="--item-index: 2; --item-x: 7vw;">
 						<span>03.</span>
-						<strong>Dinner</strong>
+						<strong>DINNER</strong>
 					</a>
 					<a class="menu-panel__item" href="/menu-draft.jpg" target="_blank" rel="noopener noreferrer" data-menu-item data-preview="/menu-draft.jpg" style="--item-index: 3; --item-x: 45vw;">
 						<span>04.</span>
-						<strong>Drinks</strong>
+						<strong>DRINKS</strong>
 					</a>
 				</div>
-				<p class="menu-panel__meta">211 High Street Christchurch / open till late</p>
+				<p class="menu-panel__meta">211 HIGH STREET CHRISTCHURCH / OPEN TILL LATE</p>
 			</nav>
 		</aside>
 		<footer class="site-footer" aria-label="Site footer">
-			<a class="site-footer__contact" href="mailto:book@marlowe.co.nz">book@marlowe.co.nz</a>
+			<a class="site-footer__contact" href="mailto:book@marlowe.co.nz">BOOK@<span class="text-serif">MARLOWE.CO.NZ</span></a>
 			<p class="site-footer__centre">
-				211 High Street Christchurch New Zealand<br />
-				Open till late, closed on Monday<br />
-				&copy; 2026 Marlowe
+				211 HIGH STREET<br />
+				CHRISTCHURCH, <span class="text-serif">NEW ZEALAND</span><br />
+				OPEN TILL LATE, <span class="text-serif">CLOSE ON MONDAY</span><br />
+				&copy; 2026 MARLOWE
 			</p>
 			<a class="site-footer__contact site-footer__contact--right" href="tel:+64221234567">022 123 4567</a>
 		</footer>
@@ -184,7 +185,7 @@ const frames = frameFolders.map((folder) =>
 				}
 
 				menuToggle.setAttribute('aria-expanded', String(!isOpen));
-				menuToggle.textContent = isOpen ? 'Menu' : 'Close';
+				menuToggle.textContent = isOpen ? 'MENU' : 'CLOSE';
 				menuPanel?.setAttribute('aria-hidden', String(isOpen));
 			});
 
@@ -276,7 +277,6 @@ const frames = frameFolders.map((folder) =>
 		color: inherit;
 		text-decoration: none;
 		pointer-events: auto;
-		font-family: ivyora-display, serif;
 	}
 
 	.site-logo {
@@ -285,7 +285,12 @@ const frames = frameFolders.map((folder) =>
 		font-size: clamp(1.1rem, 2vw, 1.7rem);
 		font-style: normal;
 		font-weight: 400;
-		letter-spacing: 0.18em;
+		letter-spacing: 0.08em;
+	}
+
+	.text-serif {
+		font-family: ivyora-display, serif;
+		font-weight: 400;
 	}
 
 	.site-link--right,
@@ -408,7 +413,6 @@ const frames = frameFolders.map((folder) =>
 		padding: 0;
 		border: 0;
 		overflow: hidden;
-		cursor: crosshair;
 		background: transparent;
 		box-shadow:
 			0 1px 2px rgba(0, 0, 0, 0.24),
@@ -614,7 +618,8 @@ const frames = frameFolders.map((folder) =>
 		font-size: clamp(4.2rem, 10.6vw, 11.5rem);
 		font-weight: 400;
 		line-height: 0.84;
-		letter-spacing: -0.075em;
+		letter-spacing: -0.02em;
+		text-transform: uppercase;
 	}
 
 	.menu-panel__item:hover,
