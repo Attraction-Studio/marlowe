@@ -434,7 +434,6 @@ body[data-menu-open="true"] .menu-panel {
     color: transparent;
     text-decoration: none;
     -webkit-text-stroke: 1.2px var(--ink-soft);
-    text-stroke: 1.2px var(--ink-soft);
     opacity: 0;
     transform: translate3d(-12vw, 0, 0);
     transition:
@@ -456,7 +455,6 @@ body[data-menu-open="true"] .menu-panel__item {
     font-weight: 700;
     letter-spacing: 0.08em;
     -webkit-text-stroke: 0;
-    text-stroke: 0;
 }
 
 .menu-panel__item strong {
@@ -473,7 +471,6 @@ body[data-menu-open="true"] .menu-panel__item {
 .menu-panel__item.is-active {
     color: var(--ink);
     -webkit-text-stroke-color: var(--ink);
-    text-stroke-color: var(--ink);
     z-index: 6;
 }
 
