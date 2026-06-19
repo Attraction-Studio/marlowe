@@ -181,6 +181,8 @@ body[data-menu-open="true"] .site-footer__centre {
 }
 
 .mosaic {
+    --columns: 5;
+    --mosaic-ratio: 1.80529;
     --tile-gap: clamp(1px, 0.16vw, 3px);
     --mosaic-padding: clamp(2px, 0.28vw, 5px);
     position: relative;
@@ -231,6 +233,15 @@ body[data-menu-open="true"] .mosaic::after {
 }
 
 .tile {
+    --origin-x: 50%;
+    --origin-y: 50%;
+    --shift-x: 0%;
+    --shift-y: 0%;
+    --tilt: 0deg;
+    --menu-x: 0vw;
+    --menu-y: 0vh;
+    --menu-tilt: 0deg;
+    --menu-delay: 0ms;
     position: relative;
     display: block;
     flex: 0 0 calc((100% - ((var(--columns) - 1) * var(--tile-gap))) / var(--columns));
@@ -409,6 +420,8 @@ body[data-menu-open="true"] .menu-panel {
 }
 
 .menu-panel__item {
+    --item-index: 0;
+    --item-x: 0vw;
     --delay: calc(var(--item-index) * 84ms);
     position: relative;
     display: grid;
