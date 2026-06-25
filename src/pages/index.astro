@@ -35,6 +35,10 @@ const tiles = Array.from({ length: rows * columns }, (_, index) => {
 		menuY: `${vertical * (18 + Math.abs(row - centerRow) * 10 + (index % 5) * 2)}vh`,
 		menuTilt: `${side * (10 + (index % 7) * 4)}deg`,
 		menuDelay: `${(index % 6) * 22}ms`,
+		eventX: `${-46 - col * 2.8}vw`,
+		eventY: `${(row - centerRow) * 1.8}vh`,
+		eventTilt: `${jitter[0] * 0.28}deg`,
+		eventDelay: `${(col - 1) * 34 + (row - 1) * 14}ms`,
 	};
 });
 const tileRows = Array.from({ length: rows }, (_, rowIndex) =>
@@ -75,7 +79,15 @@ const frames = frameFolders.map((folder) =>
 			<a class="site-logo" href="/" aria-label="Marlowe">
 				<span class="site-logo__mark" aria-hidden="true"></span>
 			</a>
-			<a class="site-link site-link--right" href="mailto:hello@marlowe.co.nz">BOOK <span class="text-serif">TABLE</span></a>
+			<button
+				class="site-link site-link--button site-link--right"
+				type="button"
+				aria-controls="event-panel"
+				aria-expanded="false"
+				data-event-toggle
+			>
+				WHAT'S <span class="text-serif">ON</span>
+			</button>
 		</header>
 		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
 			<section
@@ -91,7 +103,7 @@ const frames = frameFolders.map((folder) =>
 								type="button"
 								data-tile-index={tile.index}
 								data-frame="0"
-								style={`--tilt:${tile.tilt}; --shift-x:${tile.shiftX}; --shift-y:${tile.shiftY}; --origin-x:${tile.originX}; --origin-y:${tile.originY}; --menu-x:${tile.menuX}; --menu-y:${tile.menuY}; --menu-tilt:${tile.menuTilt}; --menu-delay:${tile.menuDelay};`}
+								style={`--tilt:${tile.tilt}; --shift-x:${tile.shiftX}; --shift-y:${tile.shiftY}; --origin-x:${tile.originX}; --origin-y:${tile.originY}; --menu-x:${tile.menuX}; --menu-y:${tile.menuY}; --menu-tilt:${tile.menuTilt}; --menu-delay:${tile.menuDelay}; --event-x:${tile.eventX}; --event-y:${tile.eventY}; --event-tilt:${tile.eventTilt}; --event-delay:${tile.eventDelay};`}
 								aria-label={`Reveal image fragment ${tile.index + 1}`}
 							>
 								<img
@@ -141,6 +153,33 @@ const frames = frameFolders.map((folder) =>
 				</a>
 			</nav>
 		</aside>
+		<aside class="event-panel" id="event-panel" aria-label="What's on at Marlowe" aria-hidden="true">
+			<div class="event-panel__inner">
+				<p class="event-panel__kicker">COLLABORATION EVENT</p>
+				<div class="event-panel__content">
+					<p class="event-panel__partner">MARLOWE x RAMBLER</p>
+					<h2>Rambler After Hours</h2>
+					<p class="event-panel__description">
+						A one-night collaboration bringing Rambler's seasonal approach into the Marlowe room with shared plates,
+						poured pairings, and a relaxed late-service menu.
+					</p>
+					<dl class="event-panel__details">
+						<div>
+							<dt>Date</dt>
+							<dd>Thursday 18 July 2026</dd>
+						</div>
+						<div>
+							<dt>Time</dt>
+							<dd>6:00 PM - late</dd>
+						</div>
+						<div>
+							<dt>Location</dt>
+							<dd>Marlowe, 211 High Street, Christchurch</dd>
+						</div>
+					</dl>
+				</div>
+			</div>
+		</aside>
 		<footer class="site-footer" aria-label="Site footer">
 			<a class="site-footer__contact" href="mailto:hello@marlowe.co.nz">hello@<span class="text-serif">MARLOWE.CO.NZ</span></a>
 			<p class="site-footer__centre">
@@ -156,10 +195,13 @@ const frames = frameFolders.map((folder) =>
 			const tiles = [...document.querySelectorAll('.tile')];
 			const menuToggle = document.querySelector('[data-menu-toggle]');
 			const menuPanel = document.querySelector('#menu-panel');
+			const eventToggle = document.querySelector('[data-event-toggle]');
+			const eventPanel = document.querySelector('#event-panel');
 			const menuItems = [...document.querySelectorAll('[data-menu-item]')];
 			const menuPreviewImage = document.querySelector('[data-menu-preview-image]');
 			const revealFrame = 1;
 			let menuCloseTimer;
+			let eventCloseTimer;
 
 			function revealTile(tile) {
 				if (tile.dataset.revealed === 'true') return;
@@ -179,24 +221,62 @@ const frames = frameFolders.map((folder) =>
 				tile.addEventListener('click', () => revealTile(tile));
 			});
 
+			function closeMenu() {
+				window.clearTimeout(menuCloseTimer);
+				document.body.dataset.menuOpen = 'false';
+				document.body.dataset.menuClosing = 'true';
+				menuCloseTimer = window.setTimeout(() => {
+					delete document.body.dataset.menuClosing;
+				}, 860);
+				menuToggle?.setAttribute('aria-expanded', 'false');
+				if (menuToggle) menuToggle.textContent = 'MENU';
+				menuPanel?.setAttribute('aria-hidden', 'true');
+			}
+
+			function closeEvent() {
+				window.clearTimeout(eventCloseTimer);
+				document.body.dataset.eventOpen = 'false';
+				document.body.dataset.eventClosing = 'true';
+				eventCloseTimer = window.setTimeout(() => {
+					delete document.body.dataset.eventClosing;
+				}, 860);
+				eventToggle?.setAttribute('aria-expanded', 'false');
+				if (eventToggle) eventToggle.innerHTML = "WHAT'S <span class=\"text-serif\">ON</span>";
+				eventPanel?.setAttribute('aria-hidden', 'true');
+			}
+
 			menuToggle?.addEventListener('click', () => {
 				const isOpen = document.body.dataset.menuOpen === 'true';
 				window.clearTimeout(menuCloseTimer);
 
 				if (isOpen) {
-					document.body.dataset.menuOpen = 'false';
-					document.body.dataset.menuClosing = 'true';
-					menuCloseTimer = window.setTimeout(() => {
-						delete document.body.dataset.menuClosing;
-					}, 860);
+					closeMenu();
 				} else {
+					if (document.body.dataset.eventOpen === 'true') closeEvent();
+					delete document.body.dataset.eventClosing;
 					delete document.body.dataset.menuClosing;
 					document.body.dataset.menuOpen = 'true';
+					menuToggle.setAttribute('aria-expanded', 'true');
+					menuToggle.textContent = 'CLOSE';
+					menuPanel?.setAttribute('aria-hidden', 'false');
 				}
+			});
 
-				menuToggle.setAttribute('aria-expanded', String(!isOpen));
-				menuToggle.textContent = isOpen ? 'MENU' : 'CLOSE';
-				menuPanel?.setAttribute('aria-hidden', String(isOpen));
+			eventToggle?.addEventListener('click', () => {
+				const isOpen = document.body.dataset.eventOpen === 'true';
+				window.clearTimeout(eventCloseTimer);
+
+				if (isOpen) {
+					closeEvent();
+				} else {
+					if (document.body.dataset.menuOpen === 'true') closeMenu();
+					delete document.body.dataset.menuClosing;
+					delete document.body.dataset.eventClosing;
+					document.body.dataset.eventOpen = 'true';
+					eventToggle.setAttribute('aria-expanded', 'true');
+					eventToggle.textContent = 'CLOSE';
+					eventPanel?.setAttribute('aria-hidden', 'false');
+				}
 			});
 
 			function setActiveMenuItem(activeItem) {
