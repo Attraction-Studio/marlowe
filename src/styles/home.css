@@ -786,7 +786,7 @@ body[data-event-open="true"] .event-panel__content {
         margin-top: 0;
     }
 
-    .event-panel h1 {
+    .event-panel h2 {
         font-size: clamp(3.4rem, 16vw, 6.6rem);
     }
 }

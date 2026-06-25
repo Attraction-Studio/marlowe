@@ -102,6 +102,7 @@ const frames = frameFolders.map((folder) =>
 								class="tile"
 								type="button"
 								data-tile-index={tile.index}
+								data-tile-col={tile.col}
 								data-frame="0"
 								style={`--tilt:${tile.tilt}; --shift-x:${tile.shiftX}; --shift-y:${tile.shiftY}; --origin-x:${tile.originX}; --origin-y:${tile.originY}; --menu-x:${tile.menuX}; --menu-y:${tile.menuY}; --menu-tilt:${tile.menuTilt}; --menu-delay:${tile.menuDelay}; --event-x:${tile.eventX}; --event-y:${tile.eventY}; --event-tilt:${tile.eventTilt}; --event-delay:${tile.eventDelay};`}
 								aria-label={`Reveal image fragment ${tile.index + 1}`}
@@ -155,7 +156,6 @@ const frames = frameFolders.map((folder) =>
 		</aside>
 		<aside class="event-panel" id="event-panel" aria-label="What's on at Marlowe" aria-hidden="true">
 			<div class="event-panel__inner">
-				<p class="event-panel__kicker">COLLABORATION EVENT</p>
 				<div class="event-panel__content">
 					<p class="event-panel__partner">MARLOWE x RAMBLER</p>
 					<h2>Rambler After Hours</h2>
@@ -199,9 +199,12 @@ const frames = frameFolders.map((folder) =>
 			const eventPanel = document.querySelector('#event-panel');
 			const menuItems = [...document.querySelectorAll('[data-menu-item]')];
 			const menuPreviewImage = document.querySelector('[data-menu-preview-image]');
+			const mobileSwapQuery = window.matchMedia('(max-width: 640px)');
 			const revealFrame = 1;
 			let menuCloseTimer;
 			let eventCloseTimer;
+			let mobileSwapTimer;
+			let mobileSwapIndex = 0;
 
 			function revealTile(tile) {
 				if (tile.dataset.revealed === 'true') return;
@@ -220,6 +223,40 @@ const frames = frameFolders.map((folder) =>
 				tile.addEventListener('focus', () => revealTile(tile));
 				tile.addEventListener('click', () => revealTile(tile));
 			});
+
+			const mobileSwapTiles = tiles.filter((tile) => {
+				const column = Number(tile.dataset.tileCol);
+				return column > 1 && column < 5;
+			});
+
+			function stopMobileAutoSwap() {
+				window.clearTimeout(mobileSwapTimer);
+				mobileSwapTimer = undefined;
+				mobileSwapIndex = 0;
+			}
+
+			function queueMobileAutoSwap() {
+				window.clearTimeout(mobileSwapTimer);
+
+				if (!mobileSwapQuery.matches || mobileSwapIndex >= mobileSwapTiles.length) return;
+
+				mobileSwapTimer = window.setTimeout(() => {
+					revealTile(mobileSwapTiles[mobileSwapIndex]);
+					mobileSwapIndex += 1;
+					queueMobileAutoSwap();
+				}, mobileSwapIndex === 0 ? 520 : 760);
+			}
+
+			function syncMobileAutoSwap() {
+				if (mobileSwapQuery.matches) {
+					queueMobileAutoSwap();
+				} else {
+					stopMobileAutoSwap();
+				}
+			}
+
+			syncMobileAutoSwap();
+			mobileSwapQuery.addEventListener('change', syncMobileAutoSwap);
 
 			function closeMenu() {
 				window.clearTimeout(menuCloseTimer);
