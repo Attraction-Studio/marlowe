@@ -687,18 +687,18 @@ body[data-event-open="true"] .event-panel__content {
 .event-panel h2 {
     margin: 0;
     font-family: ivyora-display, serif;
-    font-size: clamp(3rem, 4vw, 8rem);
+    font-size: clamp(3rem, 4vw, 5rem);
     font-weight: 400;
     line-height: 0.86;
     letter-spacing: 0;
     color: var(--accent);
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .event-panel__description {
     max-width: 31rem;
     margin: clamp(1.15rem, 2vw, 1.7rem) 0 0;
-    font-size: clamp(1rem, 1.35vw, 1.28rem);
+    font-size: clamp(1rem, 1.35vw, 1rem);
     line-height: 1.35;
 }
 
