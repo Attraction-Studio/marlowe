@@ -211,14 +211,25 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 			</div>
 		</aside>
 		<footer class="site-footer" aria-label="Site footer">
-			<a class="site-footer__contact" href="mailto:hello@marlowe.co.nz">hello@<span class="text-serif">MARLOWE.CO.NZ</span></a>
+			<div class="site-footer__contacts">
+				<a class="site-footer__contact site-footer__contact--right" href="tel:+64221234567">022 123 4567</a>
+				<a class="site-footer__contact" href="mailto:hello@marlowe.co.nz">hello@<span class="text-serif">MARLOWE.CO.NZ</span></a>
+			</div>
 			<p class="site-footer__centre">
 				211 HIGH STREET<br />
 				CHRISTCHURCH, <span class="text-serif">NEW ZEALAND</span><br />
 				OPEN TILL LATE, <span class="text-serif">CLOSED ON MONDAY</span><br />
 				&copy; 2026 MARLOWE
 			</p>
-			<a class="site-footer__contact site-footer__contact--right" href="tel:+64221234567">022 123 4567</a>
+			<button
+				class="site-footer__contact site-footer__contact--right"
+				type="button"
+				aria-controls="careers-panel"
+				aria-expanded="false"
+				data-event-toggle
+			>
+				CAREERS
+			</button>
 		</footer>
 
 		<script define:vars={{ frames }}>
