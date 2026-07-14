@@ -46,8 +46,31 @@ const tileRows = Array.from({ length: rows }, (_, rowIndex) =>
 );
 
 const frameFolders = ['1', '2'];
+const imageModules = import.meta.glob<string>('../images/{1,2}/*.webp', {
+	eager: true,
+	query: '?url',
+	import: 'default',
+});
+const imageLookup = new Map<string, string>();
+
+Object.entries(imageModules).forEach(([path, src]) => {
+	const match = path.match(/images\/(?<folder>[12])\/.*Marlowe (?<row>\d)\.(?<col>\d)\.webp$/);
+
+	if (!match?.groups) return;
+
+	imageLookup.set(`${match.groups.folder}-${match.groups.row}-${match.groups.col}`, src);
+});
+
 const frames = frameFolders.map((folder) =>
-	tiles.map((tile) => `/${folder}/${folder}Marlowe_web_images_Marlowe ${tile.row}.${tile.col}.jpg`)
+	tiles.map((tile) => {
+		const src = imageLookup.get(`${folder}-${tile.row}-${tile.col}`);
+
+		if (!src) {
+			throw new Error(`Missing mosaic image for frame ${folder}, row ${tile.row}, column ${tile.col}`);
+		}
+
+		return src;
+	})
 );
 ---
 
