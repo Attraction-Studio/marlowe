@@ -127,8 +127,9 @@ body[data-menu-open="true"] .site-logo__mark {
 }
 
 .site-header .site-link--button:first-child {
-    inline-size: 5.8ch;
+    inline-size: auto;
     text-align: left;
+    white-space: nowrap;
 }
 
 .site-link--right.site-link--button {

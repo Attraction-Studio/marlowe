@@ -97,7 +97,7 @@ const frames = frameFolders.map((folder) =>
 				aria-expanded="false"
 				data-menu-toggle
 			>
-				MENU
+				VIEW <span class="text-serif">MENU</span>
 			</button>
 			<a class="site-logo" href="/" aria-label="Marlowe">
 				<span class="site-logo__mark" aria-hidden="true"></span>
@@ -296,7 +296,7 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 					delete document.body.dataset.menuClosing;
 				}, 860);
 				menuToggle?.setAttribute('aria-expanded', 'false');
-				if (menuToggle) menuToggle.textContent = 'MENU';
+				if (menuToggle) menuToggle.innerHTML = 'VIEW <span class="text-serif">MENU</span>';
 				menuPanel?.setAttribute('aria-hidden', 'true');
 			}
 
