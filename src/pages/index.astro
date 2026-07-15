@@ -1,5 +1,6 @@
 ---
 import '../styles/home.css';
+import aboutOwnersLandscape from '../images/about/Olly Le Maitre and Santiago Burgos Landscape.webp';
 
 const rows = 4;
 const columns = 5;
@@ -153,16 +154,81 @@ const frames = frameFolders.map((folder) =>
 		</aside>
 		<aside class="menu-panel" id="explore-panel" aria-label="Explore Marlowe menus" aria-hidden="true">
 			<nav class="menu-panel__inner" aria-label="Explore Marlowe menus">
-				<div class="menu-panel__links">
-					<a class="menu-panel__item is-active" href="/menu-draft.jpg" target="_blank" rel="noopener noreferrer" data-menu-item data-preview="/menu-draft.jpg" style="--item-index: 0;">
+				<div class="menu-panel__links" data-explore-track>
+					<button class="menu-panel__item is-active" type="button" data-explore-item="careers" style="--item-index: 0;">
 						<strong>Careers</strong>
-					</a>
-					<a class="menu-panel__item" href="/menu-draft.jpg" target="_blank" rel="noopener noreferrer" data-menu-item data-preview="/menu-draft.jpg" style="--item-index: 1;">
+					</button>
+					<button class="menu-panel__item" type="button" data-explore-item="about" style="--item-index: 1;">
 						<strong>About Us</strong>
-					</a>
-					<a class="menu-panel__item" href="/menu-draft.jpg" target="_blank" rel="noopener noreferrer" data-menu-item data-preview="/menu-draft.jpg" style="--item-index: 3;">
+					</button>
+					<button class="menu-panel__item" type="button" data-explore-item="enquiries" style="--item-index: 2;">
+						<strong>General Enquiries</strong>
+					</button>
+					<button class="menu-panel__item" type="button" data-explore-item="bookings" style="--item-index: 3;">
 						<strong>Bookings Coming Soon</strong>
-					</a>
+					</button>
+				</div>
+				<div class="explore-panel__content" data-explore-content-wrap>
+					<article class="explore-panel__section is-active" data-explore-content="careers">
+						<p class="explore-panel__eyebrow">Careers</p>
+						<h2>Join the opening team</h2>
+						<p>
+							We are building a small, sharp hospitality team for Marlowe. If you care about thoughtful service,
+							seasonal food, good drinks, and a room that feels alive from lunch through late evening, we would love
+							to hear from you.
+						</p>
+						<a href="mailto:hello@marlowe.co.nz,santiago@marlowe.co.nz?subject=Marlowe%20Careers" class="explore-panel__link">
+							Send an enquiry
+						</a>
+					</article>
+					<article class="explore-panel__section" data-explore-content="about">
+						<p class="explore-panel__eyebrow">About Us</p>
+						<h2>Olly Le Maitre & Santiago Burgos</h2>
+						<figure class="explore-panel__media">
+							<img
+								src={aboutOwnersLandscape.src}
+								width={aboutOwnersLandscape.width}
+								height={aboutOwnersLandscape.height}
+								alt="Olly Le Maitre and Santiago Burgos seated together"
+								loading="lazy"
+							/>
+						</figure>
+						<p>
+							Marlowe was founded by Olly Le Maitre and Santiago Burgos, brought together by a shared belief that
+							great hospitality is about making people feel like they're in good hands from the moment they walk
+							through the door.
+						</p>
+						<p>
+							Opening this September on High Street, Marlowe is an independently owned restaurant built around
+							exceptional New Zealand produce, thoughtful service, and a genuine love of bringing people together.
+							Our food is vibrant, flavour-driven and inspired by timeless European cooking, while our wine and
+							drinks programme celebrates both New Zealand and the great wine regions of the world.
+						</p>
+						<p>
+							Whether you're joining us for a quick bite and a glass of wine, a long lunch with friends, or a
+							special dinner, our aim is simple: to create a place that feels warm, familiar and effortlessly
+							welcoming, somewhere you'll want to return to again and again.
+						</p>
+					</article>
+					<article class="explore-panel__section" data-explore-content="enquiries">
+						<p class="explore-panel__eyebrow">General Enquiries</p>
+						<h2>Talk to us</h2>
+						<p>
+							For event questions, supplier conversations, press, or anything that needs a human reply, send us a
+							note and the right person will come back to you.
+						</p>
+						<a href="mailto:hello@marlowe.co.nz,santiago@marlowe.co.nz" class="explore-panel__link">
+							Email Marlowe
+						</a>
+					</article>
+					<article class="explore-panel__section" data-explore-content="bookings">
+						<p class="explore-panel__eyebrow">Bookings Coming Soon</p>
+						<h2>Tables are nearly ready</h2>
+						<p>
+							Bookings for regular service will open soon. For now, keep an eye on the site for updates and use
+							What's On for special event reservations.
+						</p>
+					</article>
 				</div>
 			</nav>
 		</aside>
@@ -235,6 +301,9 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 			const menuPanel = document.querySelector('#menu-panel');
 			const exploreToggles = [...document.querySelectorAll('[data-explore-toggle]')];
 			const explorePanel = document.querySelector('#explore-panel');
+			const exploreTrack = document.querySelector('[data-explore-track]');
+			const exploreItems = [...document.querySelectorAll('[data-explore-item]')];
+			const exploreContents = [...document.querySelectorAll('[data-explore-content]')];
 			const eventToggles = [...document.querySelectorAll('[data-event-toggle]')];
 			const eventPanel = document.querySelector('#event-panel');
 			const menuItems = [...document.querySelectorAll('[data-menu-item]')];
@@ -332,6 +401,28 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 				explorePanel?.setAttribute('aria-hidden', 'true');
 			}
 
+			function selectExploreItem(item) {
+				const target = item.dataset.exploreItem;
+				explorePanel.dataset.exploreSelected = 'true';
+
+				exploreItems.forEach((candidate) => {
+					const isActive = candidate === item;
+					candidate.classList.toggle('is-active', isActive);
+					candidate.setAttribute('aria-pressed', String(isActive));
+				});
+
+				exploreContents.forEach((content) => {
+					content.classList.toggle('is-active', content.dataset.exploreContent === target);
+				});
+			}
+
+			function syncExploreCursor(event) {
+				if (!exploreTrack || window.matchMedia('(max-width: 820px)').matches) return;
+				const progress = event.clientX / Math.max(window.innerWidth, 1);
+				const shift = (0.5 - progress) * 18;
+				exploreTrack.style.setProperty('--explore-shift', `${shift}vw`);
+			}
+
 			function closeEvent() {
 				window.clearTimeout(eventCloseTimer);
 				document.body.dataset.eventOpen = 'false';
@@ -417,6 +508,13 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 				item.addEventListener('pointerenter', () => setActiveMenuItem(item));
 				item.addEventListener('focus', () => setActiveMenuItem(item));
 			});
+
+			exploreItems.forEach((item) => {
+				item.setAttribute('aria-pressed', String(item.classList.contains('is-active')));
+				item.addEventListener('click', () => selectExploreItem(item));
+			});
+
+			explorePanel?.addEventListener('pointermove', syncExploreCursor);
 		</script>
 	</body>
 </html>
