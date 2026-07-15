@@ -506,7 +506,8 @@ body[data-explore-open="true"] #explore-panel {
 }
 
 #explore-panel[data-explore-selected="true"] .menu-panel__links {
-    align-self: stretch;
+    align-self: center;
+    width: max-content;
     gap: clamp(0.85rem, 2vw, 2.2rem);
     transform: translate3d(0, 0, 0);
 }
@@ -700,6 +701,41 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     margin: clamp(1rem, 1.8vw, 1.35rem) 0 0;
     font-size: clamp(1rem, 1.18vw, 1.08rem);
     line-height: 1.42;
+}
+
+.explore-panel__intro {
+    color: var(--accent, #9f2926);
+    font-family: ivyora-display, serif;
+    font-style: italic;
+}
+
+.explore-panel__role {
+    max-width: 42rem;
+    margin-top: clamp(1.25rem, 2vw, 1.8rem);
+}
+
+.explore-panel__role h3 {
+    margin: 0;
+    color: var(--accent, #9f2926);
+    font-family: ivyora-display, serif;
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.explore-panel__role p {
+    margin-top: 0.65rem;
+}
+
+.explore-panel__role a {
+    color: var(--accent, #9f2926);
+    text-decoration: none;
+}
+
+.explore-panel__role a:hover,
+.explore-panel__role a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
 }
 
 .explore-panel__link {
@@ -1055,6 +1091,8 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     #explore-panel[data-explore-selected="true"] .menu-panel__links {
+        align-self: stretch;
+        width: 100%;
         flex-shrink: 0;
         gap: 1rem;
         padding-bottom: 0.25rem;
