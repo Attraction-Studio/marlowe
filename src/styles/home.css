@@ -1082,7 +1082,7 @@ body[data-event-open="true"] .event-panel {
 
 .event-panel__content {
     grid-column: 2;
-    max-width: 34rem;
+    max-width: 40rem;
     align-self: center;
     margin-top: clamp(-62px, -4vw, -28px);
     opacity: 0;
@@ -1119,7 +1119,7 @@ body[data-event-open="true"] .event-panel__content {
 }
 
 .event-panel__description {
-    max-width: 31rem;
+    max-width: 40rem;
     margin: clamp(1.15rem, 2vw, 1.7rem) 0 0;
     font-size: clamp(1rem, 1.35vw, 1rem);
     line-height: 1.35;
