@@ -147,7 +147,10 @@ const frames = frameFolders.map((folder) =>
 		</main>
 		<aside class="menu-panel" id="menu-panel" aria-label="Marlowe menu" aria-hidden="true">
 			<nav class="menu-panel__inner menu-panel__inner--image" aria-label="Marlowe menu status">
-				<p class="menu-panel__coming-soon">Coming <span class="text-serif">Soon</span></p>
+				<p class="menu-panel__coming-soon">
+					<span>Coming</span>
+					<span class="text-serif menu-panel__coming-soon-word">Soon</span>
+				</p>
 			</nav>
 		</aside>
 		<aside class="menu-panel" id="explore-panel" aria-label="Explore Marlowe menus" aria-hidden="true">
@@ -198,7 +201,8 @@ const frames = frameFolders.map((folder) =>
 								loading="lazy"
 							/>
 						</figure>
-						<p>
+						<figure>
+<p>
 							Marlowe was founded by Olly Le Maitre and Santiago Burgos, united by a shared belief that great hospitality is about making people feel welcome from the moment they walk through the door.
 						</p>
 						<p>
@@ -207,16 +211,32 @@ const frames = frameFolders.map((folder) =>
 						<p>
 							Whether you're joining us for a quick glass of wine, a long lunch, or a special dinner, our goal is simple: to create a place that feels warm, relaxed, and worth returning to.
 						</p>
+						</figure>
 					</article>
 					<article class="explore-panel__section" data-explore-content="enquiries">
-						<h2>Talk to us</h2>
-						<p>
-							For private functions, private dining, gift vouchers, supplier conversations, press, or anything that
-							needs a human reply, send us a note and the right person will come back to you.
-						</p>
-						<a href="mailto:santiago@marlowe.co.nz?subject=General%20Enquiry" class="explore-panel__link">
-							Email Marlowe
-						</a>
+						<div class="contact-panel">
+							<div class="contact-panel__headline">
+								<h2>
+									<span>Talk to</span>
+									<span class="text-serif contact-panel__headline-word">Us</span>
+									<span></span>
+								</h2>
+								<p>Or just say hello.</p>
+							</div>
+							<div class="contact-panel__details">
+								<a href="mailto:santiago@marlowe.co.nz?subject=General%20Enquiry" class="contact-panel__email">
+									santiago@marlowe.co.nz
+								</a>
+								<div class="contact-panel__socials" aria-label="Social links">
+									<a href="#" aria-label="Instagram">Instagram</a>
+									<a href="#" aria-label="Facebook">Facebook</a>
+								</div>
+								<p class="contact-panel__note">
+									For private functions, private dining, gift vouchers, supplier conversations, or anything
+									else that needs a human reply, get in touch and we'll come back to you.
+								</p>
+							</div>
+						</div>
 					</article>
 					<article class="explore-panel__section" data-explore-content="bookings">
 						<p class="explore-panel__eyebrow">Bookings Coming Soon</p>
