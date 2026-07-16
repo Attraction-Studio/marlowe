@@ -167,7 +167,6 @@ const frames = frameFolders.map((folder) =>
 				</div>
 				<div class="explore-panel__content" data-explore-content-wrap>
 					<article class="explore-panel__section is-active" data-explore-content="careers">
-						<p class="explore-panel__eyebrow">Careers</p>
 						<h2>Work with us</h2>
 						<p class="explore-panel__intro">New jobs coming soon.</p>
 						<p>
@@ -191,7 +190,6 @@ const frames = frameFolders.map((folder) =>
 						</div>
 					</article>
 					<article class="explore-panel__section" data-explore-content="about">
-						<p class="explore-panel__eyebrow">About Us</p>
 						<h2>Olly Le Maitre & Santiago Burgos</h2>
 						<figure class="explore-panel__media">
 							<img
@@ -220,13 +218,12 @@ const frames = frameFolders.map((folder) =>
 						</p>
 					</article>
 					<article class="explore-panel__section" data-explore-content="enquiries">
-						<p class="explore-panel__eyebrow">General Enquiries</p>
 						<h2>Talk to us</h2>
 						<p>
-							For event questions, supplier conversations, press, or anything that needs a human reply, send us a
-							note and the right person will come back to you.
+							For private functions, private dining, gift vouchers, supplier conversations, press, or anything that
+							needs a human reply, send us a note and the right person will come back to you.
 						</p>
-						<a href="mailto:hello@marlowe.co.nz,santiago@marlowe.co.nz" class="explore-panel__link">
+						<a href="mailto:santiago@marlowe.co.nz?subject=General%20Enquiry" class="explore-panel__link">
 							Email Marlowe
 						</a>
 					</article>
@@ -285,7 +282,7 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 		<footer class="site-footer" aria-label="Site footer">
 			<div class="site-footer__contacts">
 				<a class="site-footer__contact site-footer__contact--right" href="tel:+64221234567">022 123 4567</a>
-				<a class="site-footer__contact" href="mailto:hello@marlowe.co.nz,santiago@marlowe.co.nz">General <span class="text-serif">Enquiries</span></a>
+				<a class="site-footer__contact" href="mailto:santiago@marlowe.co.nz?subject=General%20Enquiry">General <span class="text-serif">Enquiries</span></a>
 			</div>
 			<p class="site-footer__centre">
 				<span class="site-footer__notice" aria-label="Bookings coming soon">
@@ -325,6 +322,7 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 			let menuCloseTimer;
 			let exploreCloseTimer;
 			let eventCloseTimer;
+			let exploreContentTimer;
 			let mobileSwapTimer;
 			let mobileSwapIndex = 0;
 
@@ -415,6 +413,8 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 
 			function selectExploreItem(item) {
 				const target = item.dataset.exploreItem;
+				const activeContent = exploreContents.find((content) => content.classList.contains('is-active'));
+				const nextContent = exploreContents.find((content) => content.dataset.exploreContent === target);
 				explorePanel.dataset.exploreSelected = 'true';
 
 				exploreItems.forEach((candidate) => {
@@ -423,9 +423,19 @@ A one-night collaboration between Marlowe & Rambler, led by Marlowe's Head Chef 
 					candidate.setAttribute('aria-pressed', String(isActive));
 				});
 
-				exploreContents.forEach((content) => {
-					content.classList.toggle('is-active', content.dataset.exploreContent === target);
-				});
+				if (!nextContent || activeContent === nextContent) return;
+
+				window.clearTimeout(exploreContentTimer);
+				activeContent?.classList.add('is-exiting');
+				nextContent.classList.add('is-active', 'is-entering');
+
+				exploreContentTimer = window.setTimeout(() => {
+					exploreContents.forEach((content) => {
+						const isTarget = content === nextContent;
+						content.classList.toggle('is-active', isTarget);
+						content.classList.remove('is-entering', 'is-exiting');
+					});
+				}, 320);
 			}
 
 			function syncExploreCursor(event) {
