@@ -928,7 +928,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     width: min(100%, 80rem);
     min-height: min(50svh, 32rem);
     margin-inline: auto;
-    padding-block: clamp(1rem, 3vw, 3rem);
+    /* padding-block: clamp(1rem, 3vw, 3rem); */
     color: var(--accent, #9f2926);
 }
 
