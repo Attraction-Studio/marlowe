@@ -543,6 +543,7 @@ body[data-explore-open="true"] #explore-panel {
 
 #explore-panel .menu-panel__links {
     --explore-shift: 0vw;
+    --explore-y: clamp(1.35rem, 4vh, 3.1rem);
     width: max-content;
     max-width: none;
     height: auto;
@@ -551,7 +552,7 @@ body[data-explore-open="true"] #explore-panel {
     align-items: center;
     gap: clamp(1.6rem, 4vw, 5.2rem);
     justify-items: initial;
-    transform: translate3d(var(--explore-shift), 0, 0);
+    transform: translate3d(var(--explore-shift), var(--explore-y), 0);
     transition:
             transform 520ms cubic-bezier(0.16, 0.84, 0.22, 1),
             gap 520ms cubic-bezier(0.16, 0.84, 0.22, 1);
