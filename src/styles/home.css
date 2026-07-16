@@ -1001,17 +1001,6 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     text-decoration: none;
 }
 
-.contact-panel__socials a::before {
-    content: "";
-    display: inline-block;
-    width: 0.62rem;
-    aspect-ratio: 1;
-    margin-right: 0.48rem;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    vertical-align: -0.02em;
-}
-
 .contact-panel__socials a:hover,
 .contact-panel__socials a:focus-visible,
 .contact-panel__email:hover,
