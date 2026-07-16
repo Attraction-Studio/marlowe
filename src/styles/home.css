@@ -682,10 +682,6 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
             transform 620ms cubic-bezier(0.16, 0.84, 0.22, 1);
 }
 
-.explore-panel__mobile-close {
-    display: none;
-}
-
 #explore-panel[data-explore-selected="true"] .explore-panel__content {
     opacity: 1;
     pointer-events: auto;
@@ -1181,10 +1177,28 @@ body[data-event-open="true"] .event-panel__content {
 }
 
 @media (max-width: 820px) {
-    body[data-explore-open="true"] .site-footer,
     body[data-event-open="true"] .site-footer {
         opacity: 0;
         pointer-events: none;
+    }
+
+    body[data-explore-open="true"] .site-footer {
+        opacity: 1;
+        pointer-events: none;
+    }
+
+    body[data-explore-open="true"] .site-footer__contacts,
+    body[data-explore-open="true"] .site-footer__centre {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    body[data-explore-open="true"] .site-footer [data-explore-toggle] {
+        position: fixed;
+        right: 14px;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        justify-self: end;
+        pointer-events: auto;
     }
 
     .event-panel {
@@ -1269,45 +1283,6 @@ body[data-event-open="true"] .event-panel__content {
 
     #explore-panel[data-explore-selected="true"] .menu-panel__item strong {
         font-size: clamp(1.55rem, 7.4vw, 2.25rem);
-    }
-
-    .explore-panel__mobile-close {
-        position: absolute;
-        z-index: 5;
-        top: 112px;
-        right: 18px;
-        display: block;
-        padding: 0.55rem 0.72rem 0.48rem;
-        border: 0;
-        color: var(--ink);
-        font-size: clamp(0.78rem, 3.3vw, 0.95rem);
-        letter-spacing: 0.08em;
-        line-height: 1;
-        text-transform: uppercase;
-        cursor: pointer;
-        opacity: 0;
-        pointer-events: none;
-        transform: translate3d(0, -6px, 0) rotate(-3deg);
-        transition:
-                opacity 260ms ease,
-                transform 420ms cubic-bezier(0.16, 0.84, 0.22, 1);
-    }
-
-    #explore-panel[data-explore-selected="true"] .explore-panel__mobile-close {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translate3d(0, 0, 0) rotate(-3deg);
-    }
-
-    .explore-panel__mobile-close:hover,
-    .explore-panel__mobile-close:focus-visible {
-        text-decoration: underline;
-        text-underline-offset: 0.28em;
-    }
-
-    .explore-panel__mobile-close:focus-visible {
-        outline: 2px solid var(--accent, #9f2926);
-        outline-offset: 8px;
     }
 
     .explore-panel__content {
