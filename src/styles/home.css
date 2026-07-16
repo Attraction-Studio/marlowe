@@ -691,7 +691,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .explore-panel__section {
     display: none;
     max-height: inherit;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     padding-right: clamp(0px, 1vw, 14px);
     opacity: 0;
     transform: translate3d(0, 14px, 0);
