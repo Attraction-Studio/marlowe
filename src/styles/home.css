@@ -1218,7 +1218,7 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     #explore-panel .menu-panel__links {
-        align-self: center;
+        align-self: left;
         width: fit-content;
         min-height: 0;
         margin-left: 0;
@@ -1259,7 +1259,8 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     #explore-panel[data-explore-selected="true"] .menu-panel__links {
-        align-self: center;
+        align-self: start;
+        margin-left:18px;
         width: fit-content;
         max-width: 100%;
         flex-direction: column;
