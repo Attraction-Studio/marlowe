@@ -190,28 +190,31 @@ const frames = frameFolders.map((folder) =>
 							</p>
 						</div>
 					</article>
-					<article class="explore-panel__section" data-explore-content="about">
-						<h2>Meet<br>Olly & Santi</h2>
-						<figure class="explore-panel__media">
-							<img
-								src={aboutOwnersLandscape.src}
-								width={aboutOwnersLandscape.width}
-								height={aboutOwnersLandscape.height}
-								alt="Olly Le Maitre and Santiago Burgos seated together"
-								loading="lazy"
-							/>
-						</figure>
-						<figure>
-<p>
-							Marlowe is brought to you by Olly Le Maitre and Santiago Burgos, a restaurant founded on a shared belief that great hospitality is about making people feel like they're in good hands from the moment they walk through the door.
-						</p>
-						<p>
-							Opening this September on High Street, Marlowe is an independently owned restaurant celebrating exceptional New Zealand produce, thoughtful service, and European-inspired cooking. Alongside the menu, our wine and drinks programme showcases the best of New Zealand and renowned wine regions from around the world.
-						</p>
-						<p>
-							Whether you're joining us for a quick glass of wine, a long lunch, or a special dinner, our goal is simple: to create a place that feels warm, relaxed, and worth returning to.
-						</p>
-						</figure>
+					<article
+						class="explore-panel__section"
+						data-explore-content="about"
+						style={`--about-image: url("${aboutOwnersLandscape.src}");`}
+					>
+						<div class="about-panel__column about-panel__column--intro">
+							<h2>Meet Olly & Santi</h2>
+							<p>
+								Marlowe is brought to you by Olly Le Maitre and Santiago Burgos, a restaurant founded on a shared
+								belief that great hospitality is about making people feel like they're in good hands from the
+								moment they walk through the door.
+							</p>
+						</div>
+						<div class="about-panel__column">
+							<p>
+								Opening this September on High Street, Marlowe is an independently owned restaurant celebrating
+								exceptional New Zealand produce, thoughtful service, and European-inspired cooking. Alongside the
+								menu, our wine and drinks programme showcases the best of New Zealand and renowned wine regions
+								from around the world.
+							</p>
+							<p>
+								Whether you're joining us for a quick glass of wine, a long lunch, or a special dinner, our goal
+								is simple: to create a place that feels warm, relaxed, and worth returning to.
+							</p>
+						</div>
 					</article>
 					<article class="explore-panel__section" data-explore-content="enquiries">
 						<div class="contact-panel">
@@ -335,6 +338,7 @@ const frames = frameFolders.map((folder) =>
 			const exploreTrack = document.querySelector('[data-explore-track]');
 			const exploreItems = [...document.querySelectorAll('[data-explore-item]')];
 			const exploreContents = [...document.querySelectorAll('[data-explore-content]')];
+			const aboutExploreContent = document.querySelector('[data-explore-content="about"]');
 			const eventToggles = [...document.querySelectorAll('[data-event-toggle]')];
 			const eventPanel = document.querySelector('#event-panel');
 			const menuItems = [...document.querySelectorAll('[data-menu-item]')];
@@ -573,6 +577,19 @@ const frames = frameFolders.map((folder) =>
 			});
 
 			explorePanel?.addEventListener('pointermove', syncExploreCursor);
+
+			if (aboutExploreContent) {
+				aboutExploreContent.addEventListener('pointerdown', (event) => {
+					aboutExploreContent.setPointerCapture?.(event.pointerId);
+					aboutExploreContent.dataset.imageHeld = 'true';
+				});
+
+				['pointerup', 'pointercancel', 'lostpointercapture'].forEach((eventName) => {
+					aboutExploreContent.addEventListener(eventName, () => {
+						delete aboutExploreContent.dataset.imageHeld;
+					});
+				});
+			}
 		</script>
 	</body>
 </html>
