@@ -169,6 +169,33 @@ body[data-explore-open="true"] .site-logo__mark {
     text-transform: uppercase;
 }
 
+.site-footer__notice {
+    display: block;
+    width: fit-content;
+    margin: 0 auto clamp(0.72rem, 1vw, 0.95rem);
+    padding: 0.34rem clamp(1.1rem, 2.2vw, 2rem) 0.42rem;
+    color: #9f2926;
+    background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 238, 229, 0.92)),
+            #f7f0e8;
+    box-shadow:
+            0 8px 22px rgba(0, 0, 0, 0.12),
+            inset 0 -1px 0 rgba(102, 87, 35, 0.12);
+    transform: rotate(-3.5deg);
+    transform-origin: center;
+    text-transform: none;
+}
+
+.site-footer__notice span {
+    display: block;
+    font-family: ivyora-display, serif;
+    font-size: clamp(1.08rem, 2.1vw, 1.85rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
 body[data-menu-open="true"] .site-footer__centre,
 body[data-explore-open="true"] .site-footer__centre,
 body[data-event-open="true"] .site-footer__centre {
@@ -194,6 +221,15 @@ body[data-event-open="true"] .site-footer__centre {
 
     .site-footer__contacts {
         align-items: center;
+    }
+
+    .site-footer__notice {
+        margin-bottom: 0.52rem;
+        padding-inline: 1rem;
+    }
+
+    .site-footer__notice span {
+        font-size: clamp(1rem, 7vw, 1.35rem);
     }
 }
 
