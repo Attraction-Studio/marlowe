@@ -51,6 +51,7 @@ body[data-event-open="true"] {
 
 .site-header {
     top: 0;
+    font-size: clamp(0.88rem, 1.08vw, 1.06rem);
 }
 
 body[data-menu-open="true"] .site-header,
@@ -72,6 +73,7 @@ body[data-event-open="true"] .site-footer {
     bottom: 0;
     align-items: end;
     z-index:50;
+    font-size: clamp(0.88rem, 1.08vw, 1.06rem);
 }
 
 .site-link,
@@ -162,7 +164,7 @@ body[data-explore-open="true"] .site-logo__mark {
     max-width: 26rem;
     margin: 0;
     color: rgba(255, 247, 231, 0.82);
-    font-size: clamp(0.72rem, 0.95vw, 0.86rem);
+    font-size: clamp(0.8rem, 1.04vw, 0.96rem);
     line-height: 1.35;
     letter-spacing: 0.06em;
     text-align: center;
@@ -363,6 +365,26 @@ body[data-event-open="true"] .mosaic::after {
     transform: translate3d(var(--shift-x), var(--shift-y), 0) rotate(var(--tilt));
 }
 
+.tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    background:
+            linear-gradient(180deg, rgba(0, 0, 0, 0.12), transparent 42%, rgba(0, 0, 0, 0.28)),
+            rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms steps(2, end);
+}
+
+.tile:hover::after,
+.tile:focus-visible::after,
+.tile[data-revealed="true"]::after {
+    opacity: 1;
+}
+
 body[data-menu-open="true"] .tile,
 body[data-explore-open="true"] .tile {
     z-index: 6;
@@ -443,6 +465,7 @@ body[data-event-open="true"] .tile__image {
 .tile__flash {
     position: absolute;
     inset: 0;
+    z-index: 2;
     display: block;
     background: #fff7e7;
     opacity: 0;
@@ -661,7 +684,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 }
 
 #explore-panel[data-explore-selected="true"] .menu-panel__item strong {
-    font-size: clamp(1.2rem, 2vw, 2.05rem);
+    font-size: clamp(1.35rem, 2.2vw, 2.25rem);
 }
 
 #explore-panel[data-explore-selected="true"] .menu-panel__item:not(.is-active) strong {
@@ -788,7 +811,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .explore-panel__section p {
     max-width: 31rem;
     margin: clamp(1.15rem, 2vw, 1.7rem) 0 0;
-    font-size: clamp(1rem, 1.35vw, 1rem);
+    font-size: clamp(1.06rem, 1.45vw, 1.14rem);
     line-height: 1.35;
 }
 
@@ -817,7 +840,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     margin: 0;
     color: var(--accent, #9f2926);
     font-family: neue-haas-grotesk-display, sans-serif;
-    font-size: clamp(0.78rem, 1vw, 0.92rem);
+    font-size: clamp(0.86rem, 1.08vw, 1rem);
     font-weight: 700;
     letter-spacing: 0.08em;
     line-height: 1.35;
@@ -827,7 +850,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .explore-panel__role p {
     margin: 0;
     color: #665723;
-    font-size: clamp(0.78rem, 1vw, 0.92rem);
+    font-size: clamp(0.86rem, 1.08vw, 1rem);
     letter-spacing: 0;
     line-height: 1.35;
     text-transform: none;
@@ -849,7 +872,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     width: fit-content;
     margin-top: clamp(1rem, 1.8vw, 1.45rem);
     color: var(--accent, #9f2926);
-    font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+    font-size: clamp(0.86rem, 1.02vw, 1rem);
     letter-spacing: 0.12em;
     text-decoration: none;
     text-transform: uppercase;
@@ -973,14 +996,16 @@ body[data-explore-open="true"] #explore-panel .menu-panel__preview,
     filter: saturate(0.92) contrast(1.03);
 }
 
-.menu-panel__menu-sheet {
+.menu-panel__coming-soon {
     position: relative;
     z-index: 2;
-    display: block;
-    width: min(92vw, 920px);
-    max-height: calc(100svh - clamp(164px, 15vw, 246px));
-    line-height: 0;
-    /* box-shadow: 0 28px 80px rgba(49, 24, 17, 0.32); */
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(4.2rem, 10vw, 10.8rem);
+    line-height: 0.9;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: none;
     transform: translate3d(0, 18px, 0) rotate(-0.4deg) scale(0.96);
     opacity: 0;
     transition:
@@ -988,22 +1013,9 @@ body[data-explore-open="true"] #explore-panel .menu-panel__preview,
             transform 680ms cubic-bezier(0.16, 0.84, 0.22, 1) 180ms;
 }
 
-body[data-menu-open="true"] #menu-panel .menu-panel__menu-sheet {
+body[data-menu-open="true"] #menu-panel .menu-panel__coming-soon {
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(-0.4deg) scale(1);
-}
-
-.menu-panel__menu-sheet:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 8px;
-}
-
-.menu-panel__menu-sheet img {
-    display: block;
-    width: 100%;
-    max-height: inherit;
-    height: auto;
-    object-fit: contain;
 }
 
 .event-panel {
@@ -1283,7 +1295,7 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     #explore-panel[data-explore-selected="true"] .menu-panel__item strong {
-        font-size: clamp(1.55rem, 7.4vw, 2.25rem);
+        font-size: clamp(1.7rem, 7.8vw, 2.45rem);
     }
 
     .explore-panel__content {
@@ -1341,9 +1353,8 @@ body[data-event-open="true"] .event-panel__content {
         padding: 90px 16px 88px;
     }
 
-    .menu-panel__menu-sheet {
-        width: min(94vw, 680px);
-        max-height: calc(100svh - 178px);
+    .menu-panel__coming-soon {
+        font-size: clamp(4rem, 18vw, 7rem);
     }
 
     .event-panel__inner {
