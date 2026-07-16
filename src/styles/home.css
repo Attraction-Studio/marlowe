@@ -780,13 +780,12 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     content: "";
     position: absolute;
     inset: clamp(-2rem, -3vw, -1rem);
-    z-index: -1;
-    background:
-            linear-gradient(90deg, rgba(238, 228, 214, 0.74), rgba(238, 228, 214, 0.52)),
-            var(--about-image) center 42% / cover no-repeat;
-    opacity: 0.24;
+    z-index: 0;
+    background: var(--about-image) center 42% / cover no-repeat;
+    opacity: 0.16;
     transform: translate3d(-4vw, 1.5rem, 0) rotate(-2.5deg) scale(1.06);
     filter: saturate(0.72) contrast(0.94);
+    pointer-events: none;
     animation: about-background-pan 980ms cubic-bezier(0.16, 0.84, 0.22, 1) both;
     transition:
             opacity 240ms ease,
@@ -803,7 +802,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 
 .about-panel__column {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     transition: opacity 220ms ease;
 }
 
@@ -1043,7 +1042,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     }
 
     to {
-        opacity: 0.24;
+        opacity: 0.16;
         transform: translate3d(-4vw, 1.5rem, 0) rotate(-2.5deg) scale(1.06);
     }
 }
