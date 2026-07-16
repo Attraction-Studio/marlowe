@@ -1200,20 +1200,26 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     #explore-panel .menu-panel__links {
-        width: 100%;
+        align-self: center;
+        width: fit-content;
         min-height: 0;
         margin-left: 0;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding: 0 18px 0 0;
-        scroll-snap-type: x proximity;
-        -webkit-overflow-scrolling: touch;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow: visible;
+        padding: 0;
+        gap: clamp(0.18rem, 1vh, 0.6rem);
+        scroll-snap-type: none;
+    }
+
+    #explore-panel:not([data-explore-selected="true"]) .explore-panel__content {
+        display: none;
     }
 
     #explore-panel .menu-panel__item {
         grid-template-columns: max-content;
         flex: 0 0 auto;
-        scroll-snap-align: start;
+        scroll-snap-align: none;
     }
 
     #explore-panel .menu-panel__item:has(span) {
@@ -1221,7 +1227,7 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     #explore-panel .menu-panel__item strong {
-        font-size: clamp(3.2rem, 18vw, 6.2rem);
+        font-size: clamp(3.8rem, 17vw, 5.55rem);
     }
 
     #explore-panel[data-explore-selected="true"] .menu-panel__inner {
@@ -1239,17 +1245,26 @@ body[data-event-open="true"] .event-panel__content {
         width: fit-content;
         max-width: 100%;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         flex-shrink: 0;
-        gap: 0.42rem;
+        gap: 0.1rem;
         overflow: visible;
         padding-right: 0;
         padding-bottom: 0.25rem;
         scroll-snap-type: none;
     }
 
+    #explore-panel[data-explore-selected="true"] .menu-panel__item[data-explore-item="careers"],
+    #explore-panel[data-explore-selected="true"] .menu-panel__item[data-explore-item="enquiries"] {
+        transform: translate3d(-7vw, 0, 0);
+    }
+
+    #explore-panel[data-explore-selected="true"] .menu-panel__item[data-explore-item="about"] {
+        transform: translate3d(4vw, 0, 0);
+    }
+
     #explore-panel[data-explore-selected="true"] .menu-panel__item strong {
-        font-size: clamp(1.1rem, 6vw, 1.7rem);
+        font-size: clamp(1.55rem, 7.4vw, 2.25rem);
     }
 
     .explore-panel__content {
