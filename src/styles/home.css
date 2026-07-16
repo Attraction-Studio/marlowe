@@ -694,8 +694,9 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .explore-panel__content {
     position: relative;
     z-index: 3;
-    width: min(100%, 86rem);
+    width: min(100%, 70rem);
     max-height: min(54svh, 34rem);
+    margin-inline: auto;
     color: var(--ink);
     opacity: 0;
     pointer-events: none;
@@ -709,6 +710,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     opacity: 1;
     pointer-events: auto;
     transform: translate3d(0, 0, 0);
+    min-height: min(42svh, 27rem);
 }
 
 .explore-panel__section {
@@ -735,7 +737,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 
 .explore-panel__section.is-exiting {
     position: absolute;
-    inset: 0 auto auto 0;
+    inset: 0;
     width: 100%;
     display: block;
     pointer-events: none;
@@ -752,8 +754,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     grid-template-columns: minmax(18rem, 31rem) minmax(18rem, 31rem);
     column-gap: clamp(2.8rem, 7vw, 8rem);
     align-items: start;
-    width: min(100%, 70rem);
-    margin-inline: auto;
+    width: 100%;
 }
 
 .explore-panel__section[data-explore-content="about"].is-active,
@@ -1503,6 +1504,7 @@ body[data-event-open="true"] .event-panel__content {
     .explore-panel__content {
         width: 100%;
         max-height: none;
+        min-height: 0;
     }
 
     .explore-panel__section[data-explore-content="careers"].is-active,
