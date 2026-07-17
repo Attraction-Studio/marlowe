@@ -68,7 +68,7 @@ a {
     font-size: clamp(0.88rem, 1.08vw, 1.06rem);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    mix-blend-mode: difference;
+    /* mix-blend-mode: difference; */
 }
 
 .about-header__link {
@@ -87,6 +87,7 @@ a {
 .about-header__link--right {
     justify-self: end;
     text-align: right;
+    color: #665723;
 }
 
 .about-header__link:hover,
@@ -100,7 +101,7 @@ a {
     display: block;
     width: clamp(8.5rem, 13vw, 15rem);
     line-height: 0;
-    color: inherit;
+    color: #665723;
 }
 
 .about-header__logo span {
@@ -253,7 +254,7 @@ a {
 }
 
 .about-editorial h2 {
-    margin: 0 0 clamp(1.6rem, 2.6vw, 2.5rem);
+    margin: 0;
     color: var(--accent);
     font-family: ivyora-display, serif;
     font-size: clamp(3rem, 3.6vw, 7.6rem);
@@ -281,6 +282,12 @@ a {
     text-transform: uppercase;
 }
 
+.about-editorial__divider {
+    width: min(100%, 34rem);
+    height: 1px;
+    margin: clamp(2rem, 3.6vw, 3.6rem) 0 clamp(2rem, 3.2vw, 3.2rem);
+}
+
 .about-editorial p {
     margin: 0;
     color: var(--ink);
@@ -290,6 +297,34 @@ a {
 
 .about-editorial p + p {
     margin-top: clamp(1rem, 1.45vw, 1.5rem);
+}
+
+.about-editorial__signoff {
+    margin: clamp(2rem, 3.4vw, 3.5rem) 0 0;
+    padding-top: clamp(1rem, 1.5vw, 1.4rem);
+    border-top: 1px solid rgba(102, 87, 35, 0.24);
+}
+
+.about-editorial__signoff p {
+    color: var(--accent);
+    font-family: ivyora-display, serif;
+    font-size: clamp(1.6rem, 2.5vw, 3rem);
+    font-style: italic;
+    line-height: 1;
+}
+
+.about-editorial__signoff cite {
+    display: block;
+    margin-top: 0.85rem;
+    color: var(--ink);
+    font-size: clamp(0.78rem, 0.88vw, 0.95rem);
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.about-editorial__signoff cite::before {
+    content: "— ";
 }
 
 @keyframes about-page-in {
