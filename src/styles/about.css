@@ -235,7 +235,7 @@ a {
 }
 
 .type-serif {
-    color: var(--accent);
+    /* color: var(--accent); */
     font-family: ivyora-display, serif;
     font-style: italic;
     font-weight: 400;
@@ -252,13 +252,13 @@ a {
     width: min(100%, 58rem);
 }
 
-.about-editorial h1 {
+.about-editorial h2 {
     margin: 0 0 clamp(1.6rem, 2.6vw, 2.5rem);
     color: var(--accent);
     font-family: ivyora-display, serif;
-    font-size: clamp(3rem, 5.35vw, 7.6rem);
+    font-size: clamp(3rem, 3.6vw, 7.6rem);
     font-weight: 400;
-    line-height: 0.8;
+    line-height: 1;
     letter-spacing: 0;
 }
 
