@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://marlowe.co.nz/sitemap.xml
+Sitemap: https://www.marlowe.co.nz/sitemap.xml
