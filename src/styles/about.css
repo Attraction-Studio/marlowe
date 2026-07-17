@@ -41,7 +41,7 @@ body::before {
     inset: 0;
     z-index: 80;
     pointer-events: none;
-    background: var(--accent);
+    background: #665723;
     opacity: 0;
 }
 
