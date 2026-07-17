@@ -118,6 +118,20 @@ a {
     -webkit-mask: url("/Marlowe_logo-dark.svg") center / contain no-repeat;
 }
 
+.about-wordmark {
+    position: fixed;
+    right: clamp(14px, 2.5vw, 28px);
+    bottom: clamp(14px, 2.5vw, 28px);
+    z-index: 25;
+    display: block;
+    width: clamp(2.4rem, 4.8vw, 4.2rem);
+    aspect-ratio: 1;
+    background: #665723;
+    mask: url("/marlowe-wordmark.svg") center / contain no-repeat;
+    -webkit-mask: url("/marlowe-wordmark.svg") center / contain no-repeat;
+    pointer-events: none;
+}
+
 .about-story {
     display: grid;
     grid-template-columns: minmax(22rem, 48vw) minmax(0, 1fr);
@@ -466,12 +480,17 @@ a {
 @media (max-width: 760px) {
     .about-header {
         padding: 14px;
-        color: var(--ink);
+        color: #fff7e7;
         mix-blend-mode: normal;
     }
 
     .about-header__logo {
         width: clamp(7.5rem, 28vw, 10rem);
+        color: #fff7e7;
+    }
+
+    .about-header__link--right {
+        color: #fff7e7;
     }
 
     .about-header__link {
