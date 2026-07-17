@@ -1553,6 +1553,12 @@ body[data-event-open="true"] .event-panel__content {
         display: block;
     }
 
+    .explore-panel__section[data-explore-content="careers"] .explore-panel__role:nth-of-type(2),
+    .contact-panel__row:nth-of-type(2) {
+        padding-bottom: 250px;
+    }
+
+
     .explore-panel__section[data-explore-content="careers"] .explore-panel__role,
     .explore-panel__section[data-explore-content="careers"] .explore-panel__role:first-of-type,
     .explore-panel__section[data-explore-content="careers"] .explore-panel__role:nth-of-type(2) {
@@ -1598,6 +1604,10 @@ body[data-event-open="true"] .event-panel__content {
         max-height: none;
         overflow-y: visible;
         padding-right: 0;
+    }
+
+    .explore-panel__section[data-explore-content="enquiries"].is-active {
+        grid-template-columns: 1fr;
     }
 
     .contact-panel {
