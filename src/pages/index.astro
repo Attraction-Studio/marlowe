@@ -1,5 +1,6 @@
 ---
 import '../styles/home.css';
+import Seo from '../components/Seo.astro';
 import aboutOwnersLandscape from '../images/about/Olly Le Maitre and Santiago Burgos Landscape.webp';
 
 const rows = 4;
@@ -82,11 +83,10 @@ const frames = frameFolders.map((folder) =>
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="https://use.typekit.net/duj0xcr.css" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Marlowe Site Draft</title>
-		<meta
-			name="description"
-			content="A two-frame 4x5 image-set hover prototype where the mosaic scatters to reveal a menu."
+		<Seo
+			title="Marlowe | Restaurant on High Street, Christchurch"
+			description="Marlowe is an independently owned Christchurch restaurant on High Street, celebrating New Zealand produce, thoughtful service, and European-inspired cooking."
+			path="/"
 		/>
 	</head>
 	<body>

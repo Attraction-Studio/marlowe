@@ -1,5 +1,6 @@
 ---
 import '../styles/about.css';
+import Seo from '../components/Seo.astro';
 import ownersPortrait from '../images/about/Olly Le Maitre and Santiago Burgos Portrait.webp';
 ---
 
@@ -10,11 +11,10 @@ import ownersPortrait from '../images/about/Olly Le Maitre and Santiago Burgos P
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="https://use.typekit.net/duj0xcr.css" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>About Us | Marlowe</title>
-		<meta
-			name="description"
-			content="Meet Olly Le Maitre and Santiago Burgos, the founders behind Marlowe on High Street in Christchurch."
+		<Seo
+			title="About Marlowe | Olly Le Maitre & Santiago Burgos"
+			description="Meet Olly Le Maitre and Santiago Burgos, the founders behind Marlowe, an independently owned restaurant opening on High Street in Christchurch."
+			path="/about-us/"
 		/>
 	</head>
 	<body class="about-page">
