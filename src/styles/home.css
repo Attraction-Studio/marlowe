@@ -614,7 +614,7 @@ body[data-explore-open="true"] #explore-panel {
     width: fit-content;
     max-width: 96vw;
     margin-left: var(--item-x);
-    color: var(--ink);
+    color: #665723;
     text-decoration: none;
     opacity: 0;
     transform: translate3d(-12vw, 0, 0);
@@ -818,7 +818,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 
 .explore-panel__eyebrow {
     margin: 0 0 clamp(1.35rem, 2.2vw, 2.1rem);
-    color: var(--accent, #9f2926);
+    color: #665723;
     font-size: clamp(0.8rem, 1.1vw, 0.98rem);
     letter-spacing: 0.12em;
     line-height: 1.35;
@@ -827,7 +827,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 
 .explore-panel__section h2 {
     margin: 0;
-    color: var(--accent, #9f2926);
+    color: #665723;
     font-family: ivyora-display, serif;
     font-size: clamp(3rem, 4vw, 5rem);
     font-weight: 400;
@@ -867,12 +867,13 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .explore-panel__section p {
     max-width: 35rem;
     margin: clamp(1.15rem, 2vw, 1.7rem) 0 0;
+    color: #665723;
     font-size: clamp(1.06rem, 1.45vw, 1.14rem);
     line-height: 1.35;
 }
 
 .explore-panel__intro {
-    color: var(--accent, #9f2926);
+    color: #665723;
     font-family: ivyora-display, serif;
     font-style: italic;
 }
@@ -894,7 +895,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 
 .explore-panel__role h3 {
     margin: 0;
-    color: var(--accent, #9f2926);
+    color: #665723;
     font-family: neue-haas-grotesk-display, sans-serif;
     font-size: clamp(0.86rem, 1.08vw, 1rem);
     font-weight: 700;
@@ -913,7 +914,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 }
 
 .explore-panel__role a {
-    color: var(--accent, #9f2926);
+    color: #665723;
     text-decoration: none;
 }
 
@@ -927,7 +928,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     display: inline-block;
     width: fit-content;
     margin-top: clamp(1rem, 1.8vw, 1.45rem);
-    color: var(--accent, #9f2926);
+    color: #665723;
     font-size: clamp(0.86rem, 1.02vw, 1rem);
     letter-spacing: 0.12em;
     text-decoration: none;
@@ -947,7 +948,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 
 .contact-panel {
     display: contents;
-    color: var(--accent, #9f2926);
+    color: #665723;
 }
 
 .contact-panel__intro h2 {
@@ -963,7 +964,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .contact-panel__intro p:not(.explore-panel__intro) {
     max-width: 35rem;
     margin: clamp(1.15rem, 2vw, 1.7rem) 0 0;
-    color: var(--accent, #9f2926);
+    color: #665723;
     font-size: clamp(1.06rem, 1.45vw, 1.14rem);
     line-height: 1.35;
 }
@@ -990,7 +991,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 
 .contact-panel__row h3 {
     margin: 0;
-    color: var(--accent, #9f2926);
+    color: #665723;
     font-family: neue-haas-grotesk-display, sans-serif;
     font-size: clamp(0.86rem, 1.08vw, 1rem);
     font-weight: 700;
@@ -1009,7 +1010,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 }
 
 .contact-panel__row a {
-    color: var(--accent, #9f2926);
+    color: #665723;
     text-decoration: none;
 }
 
@@ -1114,7 +1115,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .menu-panel__item:hover,
 .menu-panel__item:focus-visible,
 .menu-panel__item.is-active {
-    color: var(--ink);
+    color: #665723;
     z-index: 6;
 }
 
@@ -1162,7 +1163,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__preview,
     z-index: 2;
     display: grid;
     margin: 0;
-    color: var(--ink);
+    color: #665723;
     font-size: clamp(4.2rem, 10vw, 10.8rem);
     line-height: 0.78;
     letter-spacing: 0;
@@ -1314,7 +1315,7 @@ body[data-event-open="true"] .event-panel__content {
     font-weight: 400;
     line-height: 0.86;
     letter-spacing: 0;
-    color: var(--accent);
+    color: var(--ink);
     /* text-transform: uppercase; */
 }
 
@@ -1350,14 +1351,14 @@ body[data-event-open="true"] .event-panel__content {
 }
 
 .event-panel__details dt {
-    color: var(--accent);
+    color: var(--ink);
 }
 
 .event-panel__booking {
     display: inline-block;
     width: fit-content;
     margin-top: clamp(1rem, 1.8vw, 1.45rem);
-    color: var(--accent);
+    color: #665723;
     font-size: clamp(0.82rem, 1vw, 0.96rem);
     letter-spacing: 0.12em;
     line-height: 1.2;
@@ -1372,7 +1373,7 @@ body[data-event-open="true"] .event-panel__content {
 }
 
 .event-panel__booking:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid #665723;
     outline-offset: 8px;
 }
 

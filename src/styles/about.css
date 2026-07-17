@@ -260,7 +260,7 @@ a {
 
 .about-editorial h2 {
     margin: 0;
-    color: var(--accent);
+    color: #665723;
     font-family: ivyora-display, serif;
     font-size: clamp(3rem, 3.6vw, 7.6rem);
     font-weight: 400;
@@ -309,7 +309,7 @@ a {
     gap: 0;
     width: min(100%, 42rem);
     margin-top: clamp(2.1rem, 3.6vw, 3.7rem);
-    color: var(--accent);
+    color: #665723;
 }
 
 .about-editorial__section-heading {
@@ -350,7 +350,7 @@ a {
 .about-editorial__detail > h3:not(.about-editorial__section-heading),
 .about-editorial__roles h4 {
     margin: 0;
-    color: var(--accent);
+    color: #665723;
     font-family: neue-haas-grotesk-display, sans-serif;
     font-size: clamp(0.86rem, 1.08vw, 1rem);
     font-weight: 700;
@@ -370,7 +370,7 @@ a {
 }
 
 .about-editorial__detail a {
-    color: var(--accent);
+    color: #665723;
     text-decoration: none;
 }
 
@@ -400,7 +400,7 @@ a {
 }
 
 .about-editorial__signoff p {
-    color: var(--accent);
+    color: #665723;
     font-family: ivyora-display, serif;
     font-size: clamp(1.6rem, 2.5vw, 3rem);
     font-style: italic;
