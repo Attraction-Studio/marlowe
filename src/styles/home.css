@@ -254,6 +254,10 @@ body[data-event-open="true"] .site-footer__centre {
         padding: 14px;
     }
 
+    .site-logo {
+        transform: translateY(-0.22rem);
+    }
+
     .site-footer {
         grid-template-columns: 1fr;
         justify-items: center;

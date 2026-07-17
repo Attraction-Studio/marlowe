@@ -487,6 +487,7 @@ a {
     .about-header__logo {
         width: clamp(7.5rem, 28vw, 10rem);
         color: #fff7e7;
+        transform: translateY(-0.22rem);
     }
 
     .about-header__link--right {
