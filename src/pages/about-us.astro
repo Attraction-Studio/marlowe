@@ -65,12 +65,18 @@ import ownersPortrait from '../images/about/Olly Le Maitre and Santiago Burgos P
 		</main>
 
 		<script>
+			if (window.sessionStorage?.getItem('marloweTransition') === 'to-about') {
+				document.body.dataset.pageEnter = 'from-home';
+				window.sessionStorage.removeItem('marloweTransition');
+			}
+
 			document.querySelectorAll('[data-about-exit]').forEach((link) => {
 				link.addEventListener('click', (event) => {
 					const href = link.getAttribute('href');
 					if (!href || href.startsWith('mailto:')) return;
 
 					event.preventDefault();
+					window.sessionStorage?.setItem('marloweTransition', 'to-home');
 					document.body.dataset.aboutExit = 'true';
 					window.setTimeout(() => {
 						window.location.href = href;

@@ -49,6 +49,11 @@ body[data-about-exit="true"]::before {
     animation: about-page-out 540ms cubic-bezier(0.72, 0, 0.28, 1) both;
 }
 
+body[data-page-enter="from-home"]::before {
+    transform: translateY(0);
+    animation: about-page-reveal 720ms cubic-bezier(0.16, 0.84, 0.22, 1) 80ms both;
+}
+
 a {
     color: inherit;
 }
@@ -346,6 +351,16 @@ a {
 
     to {
         transform: translateY(0);
+    }
+}
+
+@keyframes about-page-reveal {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
     }
 }
 

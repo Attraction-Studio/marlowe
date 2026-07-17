@@ -330,6 +330,11 @@ const frames = frameFolders.map((folder) =>
 		</footer>
 
 		<script define:vars={{ frames }}>
+			if (window.sessionStorage?.getItem('marloweTransition') === 'to-home') {
+				document.body.dataset.pageEnter = 'from-about';
+				window.sessionStorage.removeItem('marloweTransition');
+			}
+
 			const tiles = [...document.querySelectorAll('.tile')];
 			const menuToggles = [...document.querySelectorAll('[data-menu-toggle]')];
 			const menuPanel = document.querySelector('#menu-panel');
@@ -440,6 +445,7 @@ const frames = frameFolders.map((folder) =>
 			function selectExploreItem(item) {
 				const target = item.dataset.exploreItem;
 				if (target === 'about') {
+					window.sessionStorage?.setItem('marloweTransition', 'to-about');
 					document.body.dataset.pageTransition = 'about';
 					window.setTimeout(() => {
 						window.location.href = '/about-us';

@@ -45,6 +45,11 @@ body[data-page-transition="about"]::before {
     animation: page-transition-about 620ms cubic-bezier(0.72, 0, 0.28, 1) both;
 }
 
+body[data-page-enter="from-about"]::before {
+    transform: translateY(0);
+    animation: page-transition-home-reveal 720ms cubic-bezier(0.16, 0.84, 0.22, 1) 80ms both;
+}
+
 .site-header,
 .site-footer {
     position: fixed;
@@ -1073,6 +1078,16 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     58%,
     100% {
         transform: translateY(0);
+    }
+}
+
+@keyframes page-transition-home-reveal {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
     }
 }
 
