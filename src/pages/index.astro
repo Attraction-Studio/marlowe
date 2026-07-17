@@ -439,6 +439,14 @@ const frames = frameFolders.map((folder) =>
 
 			function selectExploreItem(item) {
 				const target = item.dataset.exploreItem;
+				if (target === 'about') {
+					document.body.dataset.pageTransition = 'about';
+					window.setTimeout(() => {
+						window.location.href = '/about-us';
+					}, 560);
+					return;
+				}
+
 				const activeContent = exploreContents.find((content) => content.classList.contains('is-active'));
 				const nextContent = exploreContents.find((content) => content.dataset.exploreContent === target);
 				explorePanel.dataset.exploreSelected = 'true';

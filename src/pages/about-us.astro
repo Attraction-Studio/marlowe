@@ -1,0 +1,85 @@
+---
+import '../styles/about.css';
+import ownersLandscape from '../images/about/Olly Le Maitre and Santiago Burgos Landscape.webp';
+import ownersPortrait from '../images/about/Olly Le Maitre and Santiago Burgos Portrait.webp';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="https://use.typekit.net/duj0xcr.css" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>About Us | Marlowe</title>
+		<meta
+			name="description"
+			content="Meet Olly Le Maitre and Santiago Burgos, the founders behind Marlowe on High Street in Christchurch."
+		/>
+	</head>
+	<body class="about-page">
+		<header class="about-header" aria-label="About page header">
+			<a class="about-header__link" href="/" data-about-exit>Back <span>Home</span></a>
+			<a class="about-header__logo" href="/" aria-label="Marlowe home" data-about-exit>
+				<span aria-hidden="true"></span>
+			</a>
+			<a class="about-header__link about-header__link--right" href="mailto:santiago@marlowe.co.nz?subject=General%20Enquiry">
+				Get <span>In Touch</span>
+			</a>
+		</header>
+
+		<main class="about-story" aria-label="About Marlowe">
+			<section class="about-poster" aria-label="Olly and Santi portrait artwork">
+				<div class="about-poster__tiles" aria-hidden="true">
+					<figure class="about-poster__tile">
+						<img src={ownersPortrait.src} width={ownersPortrait.width} height={ownersPortrait.height} alt="" />
+					</figure>
+				</div>
+				<div class="about-poster__wash" aria-hidden="true"></div>
+				<p class="about-poster__date">Opening September</p>
+				<p class="about-poster__title">
+					<span>Meet</span>
+					<span>Olly & Santi</span>
+				</p>
+				<p class="about-poster__address">211 High Street,<br />Christchurch, New Zealand</p>
+			</section>
+
+			<section class="about-editorial" aria-label="About Marlowe story">
+				<div class="about-editorial__copy">
+					<h1>Meet Olly Le Maitre and Santiago Burgos</h1>
+					<p class="about-editorial__eyebrow">Marlowe on High Street, Christchurch</p>
+					<p>
+						Marlowe is brought to you by Olly Le Maitre and Santiago Burgos, a restaurant founded on a shared
+						belief that great hospitality is about making people feel like they're in good hands from the moment
+						they walk through the door.
+					</p>
+					<p>
+						Opening this September on High Street, Marlowe is an independently owned restaurant celebrating
+						exceptional New Zealand produce, thoughtful service, and European-inspired cooking.
+					</p>
+					<p>
+						Alongside the menu, our wine and drinks programme showcases the best of New Zealand and renowned wine
+						regions from around the world. Whether you're joining us for a quick glass of wine, a long lunch, or a
+						special dinner, our goal is simple: to create a place that feels warm, relaxed, and worth returning to.
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<script>
+			document.querySelectorAll('[data-about-exit]').forEach((link) => {
+				link.addEventListener('click', (event) => {
+					const href = link.getAttribute('href');
+					if (!href || href.startsWith('mailto:')) return;
+
+					event.preventDefault();
+					document.body.dataset.aboutExit = 'true';
+					window.setTimeout(() => {
+						window.location.href = href;
+					}, 520);
+				});
+			});
+		</script>
+	</body>
+</html>

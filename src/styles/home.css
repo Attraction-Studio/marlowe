@@ -31,6 +31,20 @@ body[data-event-open="true"] {
     overflow: hidden;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    background: #9f2926;
+    transform: translateY(100%);
+}
+
+body[data-page-transition="about"]::before {
+    animation: page-transition-about 620ms cubic-bezier(0.72, 0, 0.28, 1) both;
+}
+
 .site-header,
 .site-footer {
     position: fixed;
@@ -363,26 +377,6 @@ body[data-event-open="true"] .mosaic::after {
 .tile[data-revealed="true"] {
     z-index: 4;
     transform: translate3d(var(--shift-x), var(--shift-y), 0) rotate(var(--tilt));
-}
-
-.tile::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: block;
-    background:
-            linear-gradient(180deg, rgba(0, 0, 0, 0.12), transparent 42%, rgba(0, 0, 0, 0.28)),
-            rgba(0, 0, 0, 0.18);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 160ms steps(2, end);
-}
-
-.tile:hover::after,
-.tile:focus-visible::after,
-.tile[data-revealed="true"]::after {
-    opacity: 1;
 }
 
 body[data-menu-open="true"] .tile,
@@ -1068,6 +1062,17 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     to {
         opacity: 0;
         transform: translate3d(0, -10px, 0);
+    }
+}
+
+@keyframes page-transition-about {
+    0% {
+        transform: translateY(100%);
+    }
+
+    58%,
+    100% {
+        transform: translateY(0);
     }
 }
 
