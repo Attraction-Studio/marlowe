@@ -18,6 +18,12 @@ import ownersPortrait from '../images/about/Olly Le Maitre and Santiago Burgos P
 		/>
 	</head>
 	<body class="about-page">
+		<script>
+			if (window.sessionStorage?.getItem('marloweTransition') === 'to-about') {
+				document.body.dataset.pageEnter = 'from-home';
+				window.sessionStorage.removeItem('marloweTransition');
+			}
+		</script>
 		<header class="about-header" aria-label="About page header">
 			<a class="about-header__link" href="/" data-about-exit>Back <span>Home</span></a>
 			<a class="about-header__logo" href="/" aria-label="Marlowe home" data-about-exit>
@@ -60,16 +66,45 @@ import ownersPortrait from '../images/about/Olly Le Maitre and Santiago Burgos P
 						regions from around the world. Whether you're joining us for a quick glass of wine, a long lunch, or a
 						special dinner, our goal is simple: to create a place that feels <span class="type-serif">warm, relaxed,</span> and worth returning to.
 					</p>
+					<div class="about-editorial__details" aria-label="Contact and careers">
+						<h3 class="about-editorial__section-heading"><span>Contact</span> Us</h3>
+						<div class="about-editorial__detail">
+							<h3>General</h3>
+							<p><a href="mailto:santiago@marlowe.co.nz">santiago@marlowe.co.nz</a></p>
+						</div>
+						<div class="about-editorial__detail">
+							<h3>Follow Us</h3>
+							<p>
+								<a href="https://www.instagram.com/marloweonhigh" target="_blank" rel="noopener noreferrer">
+									Instagram
+								</a>
+							</p>
+						</div>
+						<div class="about-editorial__detail about-editorial__detail--wide">
+							<h3 class="about-editorial__section-heading"><span>Work</span> with us</h3>
+							<div class="about-editorial__roles">
+								<div>
+									<h4>Kitchen</h4>
+									<p>
+										To enquire about a position with the Marlowe kitchen team, send your CV and a brief cover note to
+										<a href="mailto:olly@marlowe.co.nz">olly@marlowe.co.nz</a>
+									</p>
+								</div>
+								<div>
+									<h4>Front of House & Bar</h4>
+									<p>
+										To apply for a role in our service or bar team, send your CV and cover letter to
+										<a href="mailto:santi@marlowe.co.nz">santi@marlowe.co.nz</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 		</main>
 
 		<script>
-			if (window.sessionStorage?.getItem('marloweTransition') === 'to-about') {
-				document.body.dataset.pageEnter = 'from-home';
-				window.sessionStorage.removeItem('marloweTransition');
-			}
-
 			document.querySelectorAll('[data-about-exit]').forEach((link) => {
 				link.addEventListener('click', (event) => {
 					const href = link.getAttribute('href');

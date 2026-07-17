@@ -38,16 +38,16 @@ body::before {
     z-index: 100;
     pointer-events: none;
     background: #9f2926;
-    transform: translateY(100%);
+    opacity: 0;
 }
 
 body[data-page-transition="about"]::before {
-    animation: page-transition-about 620ms cubic-bezier(0.72, 0, 0.28, 1) both;
+    animation: page-transition-about 520ms ease both;
 }
 
 body[data-page-enter="from-about"]::before {
-    transform: translateY(0);
-    animation: page-transition-home-reveal 720ms cubic-bezier(0.16, 0.84, 0.22, 1) 80ms both;
+    opacity: 1;
+    animation: page-transition-home-reveal 680ms ease 90ms both;
 }
 
 .site-header,
@@ -614,16 +614,14 @@ body[data-explore-open="true"] #explore-panel {
     width: fit-content;
     max-width: 96vw;
     margin-left: var(--item-x);
-    color: transparent;
+    color: var(--ink);
     text-decoration: none;
-    -webkit-text-stroke: 1.2px var(--ink-soft);
     opacity: 0;
     transform: translate3d(-12vw, 0, 0);
     transition:
             color 220ms ease,
             opacity 620ms ease var(--delay),
-            transform 760ms cubic-bezier(0.16, 0.84, 0.22, 1) var(--delay),
-            -webkit-text-stroke-color 220ms ease;
+            transform 760ms cubic-bezier(0.16, 0.84, 0.22, 1) var(--delay);
 }
 
 body[data-explore-open="true"] #explore-panel .menu-panel__item {
@@ -678,8 +676,7 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
     transition:
             font-size 520ms cubic-bezier(0.16, 0.84, 0.22, 1),
             opacity 260ms ease,
-            color 220ms ease,
-            -webkit-text-stroke-color 220ms ease;
+            color 220ms ease;
 }
 
 #explore-panel[data-explore-selected="true"] .menu-panel__item strong {
@@ -1071,23 +1068,22 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 }
 
 @keyframes page-transition-about {
-    0% {
-        transform: translateY(100%);
+    from {
+        opacity: 0;
     }
 
-    58%,
-    100% {
-        transform: translateY(0);
+    to {
+        opacity: 1;
     }
 }
 
 @keyframes page-transition-home-reveal {
     from {
-        transform: translateY(0);
+        opacity: 1;
     }
 
     to {
-        transform: translateY(100%);
+        opacity: 0;
     }
 }
 
@@ -1119,7 +1115,6 @@ body[data-explore-open="true"] #explore-panel .menu-panel__item {
 .menu-panel__item:focus-visible,
 .menu-panel__item.is-active {
     color: var(--ink);
-    -webkit-text-stroke-color: var(--ink);
     z-index: 6;
 }
 

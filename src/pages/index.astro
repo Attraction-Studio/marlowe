@@ -90,6 +90,12 @@ const frames = frameFolders.map((folder) =>
 		/>
 	</head>
 	<body>
+		<script>
+			if (window.sessionStorage?.getItem('marloweTransition') === 'to-home') {
+				document.body.dataset.pageEnter = 'from-about';
+				window.sessionStorage.removeItem('marloweTransition');
+			}
+		</script>
 		<header class="site-header" aria-label="Site header">
 			<button
 				class="site-link site-link--button"
@@ -330,11 +336,6 @@ const frames = frameFolders.map((folder) =>
 		</footer>
 
 		<script define:vars={{ frames }}>
-			if (window.sessionStorage?.getItem('marloweTransition') === 'to-home') {
-				document.body.dataset.pageEnter = 'from-about';
-				window.sessionStorage.removeItem('marloweTransition');
-			}
-
 			const tiles = [...document.querySelectorAll('.tile')];
 			const menuToggles = [...document.querySelectorAll('[data-menu-toggle]')];
 			const menuPanel = document.querySelector('#menu-panel');
