@@ -242,6 +242,10 @@ body[data-explore-open="true"] .site-logo__mark {
     white-space: nowrap;
 }
 
+.site-footer__address {
+    display: block;
+}
+
 body[data-menu-open="true"] .site-footer__centre,
 body[data-explore-open="true"] .site-footer__centre,
 body[data-event-open="true"] .site-footer__centre {
@@ -274,12 +278,20 @@ body[data-event-open="true"] .site-footer__centre {
     }
 
     .site-footer__centre {
-        order: 3;
+        display: contents;
+    }
+
+    .site-footer__notice {
+        order: 1;
     }
 
     .site-footer [data-explore-toggle] {
         order: 2;
-        margin-bottom: 0.18rem;
+        margin: -0.18rem 0 0.16rem;
+    }
+
+    .site-footer__address {
+        order: 3;
     }
 
     .site-footer__notice {
