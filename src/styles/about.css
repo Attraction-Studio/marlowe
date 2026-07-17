@@ -101,32 +101,33 @@ a {
     width: clamp(8.5rem, 13vw, 15rem);
     line-height: 0;
     color: inherit;
-    transform: rotate(-5deg);
 }
 
 .about-header__logo span {
     display: block;
     width: 100%;
-    aspect-ratio: 896 / 385.08;
+    aspect-ratio: 896 / 315.25;
     background: currentColor;
-    mask: url("/Marlowe_logo-dark-italic.svg") center / contain no-repeat;
-    -webkit-mask: url("/Marlowe_logo-dark-italic.svg") center / contain no-repeat;
+    mask: url("/Marlowe_logo-dark.svg") center / contain no-repeat;
+    -webkit-mask: url("/Marlowe_logo-dark.svg") center / contain no-repeat;
 }
 
 .about-story {
     display: grid;
     grid-template-columns: minmax(22rem, 48vw) minmax(0, 1fr);
     min-height: 100svh;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .about-poster {
     position: sticky;
     top: 0;
+    height: 100svh;
     min-height: 100svh;
     overflow: hidden;
     isolation: isolate;
     background: #403a19;
+    align-self: start;
 }
 
 .about-poster__tiles {
@@ -222,74 +223,73 @@ a {
     display: block;
 }
 
+.about-poster__title em {
+    font-style: italic;
+}
+
+.type-sans {
+    font-family: neue-haas-grotesk-display, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.type-serif {
+    color: var(--accent);
+    font-family: ivyora-display, serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
 .about-editorial {
-    min-height: 100svh;
-    display: grid;
-    grid-template-columns: minmax(18rem, 0.9fr) minmax(16rem, 0.72fr);
-    gap: clamp(1.2rem, 3.2vw, 4.8rem);
-    align-items: center;
-    padding: clamp(7rem, 9vw, 10rem) clamp(1.2rem, 4.8vw, 6.4rem) clamp(4rem, 7vw, 6rem);
+    min-height: 154svh;
+    display: flex;
+    align-items: flex-start;
+    padding: clamp(8rem, 11vw, 12rem) clamp(1.2rem, 4.8vw, 6.4rem) clamp(18rem, 28vh, 24rem);
 }
 
 .about-editorial__copy {
-    max-width: 48rem;
-}
-
-.about-editorial__eyebrow {
-    margin: 0 0 clamp(1.2rem, 2vw, 1.9rem);
-    color: var(--accent);
-    font-size: clamp(0.7rem, 0.78vw, 0.88rem);
-    font-style: italic;
-    line-height: 1.1;
-    text-transform: uppercase;
+    width: min(100%, 58rem);
 }
 
 .about-editorial h1 {
     margin: 0 0 clamp(1.6rem, 2.6vw, 2.5rem);
     color: var(--accent);
     font-family: ivyora-display, serif;
-    font-size: clamp(3rem, 5.1vw, 7.2rem);
+    font-size: clamp(3rem, 5.35vw, 7.6rem);
     font-weight: 400;
-    line-height: 0.84;
+    line-height: 0.8;
     letter-spacing: 0;
+}
+
+.about-editorial h1 span {
+    display: block;
+}
+
+.about-editorial h1 em {
+    font-style: italic;
+}
+
+.about-editorial h1 .type-sans {
+    color: var(--ink);
+    font-family: neue-haas-grotesk-display, sans-serif;
+    font-size: 0.43em;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.04;
+    text-transform: uppercase;
 }
 
 .about-editorial p {
     margin: 0;
     color: var(--ink);
-    font-size: clamp(1.02rem, 1.14vw, 1.24rem);
-    line-height: 1.22;
+    font-size: clamp(1.06rem, 1.2vw, 1.34rem);
+    line-height: 1.24;
 }
 
 .about-editorial p + p {
     margin-top: clamp(1rem, 1.45vw, 1.5rem);
-}
-
-.about-editorial__image {
-    position: relative;
-    margin: 0;
-    overflow: hidden;
-    aspect-ratio: 4 / 5.2;
-    background: #211b14;
-    transform: rotate(1.25deg);
-    box-shadow: 0 1.2rem 3.4rem rgba(56, 44, 26, 0.18);
-}
-
-.about-editorial__image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(180deg, rgba(102, 87, 35, 0.06), rgba(159, 41, 38, 0.12));
-}
-
-.about-editorial__image img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 48% center;
-    filter: saturate(0.88) contrast(1.02);
 }
 
 @keyframes about-page-in {
@@ -319,14 +319,8 @@ a {
         grid-template-columns: 42vw minmax(0, 1fr);
     }
 
-    .about-editorial {
-        grid-template-columns: 1fr;
-        align-content: center;
-    }
-
-    .about-editorial__image {
-        width: min(28rem, 76%);
-        aspect-ratio: 16 / 10;
+    .about-editorial__copy {
+        width: min(100%, 50rem);
     }
 }
 
@@ -383,7 +377,4 @@ a {
         font-size: clamp(3rem, 15vw, 4.8rem);
     }
 
-    .about-editorial__image {
-        width: 100%;
-    }
 }
