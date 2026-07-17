@@ -1,0 +1,50 @@
+---
+import Seo from '../components/Seo.astro';
+import '../styles/not-found.css';
+
+Astro.response.status = 404;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="https://use.typekit.net/duj0xcr.css" />
+		<meta name="viewport" content="width=device-width" />
+		<Seo
+			title="Page Not Found | Marlowe"
+			description="The page you're looking for could not be found. Return to Marlowe on High Street, Christchurch."
+			path="/404/"
+			noindex
+		/>
+	</head>
+	<body>
+		<header class="not-found-header" aria-label="Site header">
+			<a class="not-found-header__link" href="/">Back <span>Home</span></a>
+			<a class="not-found-header__logo" href="/" aria-label="Marlowe home">
+				<span aria-hidden="true"></span>
+			</a>
+			<a
+				class="not-found-header__link not-found-header__link--right"
+				href="mailto:santiago@marlowe.co.nz?subject=General%20Enquiry"
+			>
+				Get <span>In Touch</span>
+			</a>
+		</header>
+
+		<main class="not-found" aria-labelledby="not-found-title">
+			<p class="not-found__code">404</p>
+			<h1 id="not-found-title">
+				This table
+				<span>isn't ready</span>
+			</h1>
+			<p class="not-found__copy">
+				The page you're looking for has moved, disappeared, or was never on the menu.
+			</p>
+			<a class="not-found__button" href="/">Return Home</a>
+		</main>
+
+		<span class="not-found-wordmark" aria-hidden="true"></span>
+	</body>
+</html>
