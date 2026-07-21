@@ -1433,6 +1433,17 @@ body[data-event-open="true"] .event-panel__content {
 }
 
 @media (max-width: 820px) {
+    .site-header {
+        background-color: transparent;
+        transition: background-color 320ms ease;
+    }
+
+    body[data-menu-open="true"] .site-header,
+    body[data-explore-open="true"] .site-header,
+    body[data-event-open="true"] .site-header {
+        background-color: #fff7e7;
+    }
+
     body[data-event-open="true"] .site-footer {
         opacity: 0;
         pointer-events: none;
