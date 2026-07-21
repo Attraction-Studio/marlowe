@@ -484,10 +484,6 @@ a {
         mix-blend-mode: normal;
     }
 
-    .site-header {
-        background-color: #fff7e7;
-    }
-
     .about-header__logo {
         width: clamp(7.5rem, 28vw, 10rem);
         color: #fff7e7;

@@ -1457,6 +1457,10 @@ body[data-event-open="true"] .event-panel__content {
         pointer-events: auto;
     }
 
+     .site-header {
+        background-color: #fff7e7;
+    }
+
     .event-panel {
         overflow-y: auto;
         overscroll-behavior: contain;
