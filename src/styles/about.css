@@ -285,9 +285,9 @@ a {
     margin: 0;
     color: #665723;
     font-family: neue-haas-grotesk-display, sans-serif;
-    font-size: clamp(2.3rem, 2.8vw, 5.8rem);
+    font-size: clamp(1.35rem, 2.1vw, 2.25rem);
     font-weight: 500;
-    line-height: 1.02;
+    line-height: 1.15;
     letter-spacing: 0;
 }
 
@@ -317,7 +317,7 @@ a {
 .about-editorial__divider {
     width: min(100%, 34rem);
     height: 1px;
-    margin: clamp(2rem, 3.6vw, 3.6rem) 0 clamp(2rem, 3.2vw, 3.2rem);
+    margin: clamp(1rem, 1.8vw, 1.8rem) 0 clamp(1rem, 1.6vw, 1.6rem);
 }
 
 .about-editorial p {
