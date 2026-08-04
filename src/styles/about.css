@@ -248,7 +248,7 @@ a {
     line-height: 0.78;
     letter-spacing: 0;
     text-align: center;
-    transform: translate(-50%, -50%) skew(-11deg) rotate(-6deg);
+    transform: translate(-50%, -50%);
     text-shadow: 0 0.08em 0.4em rgba(0, 0, 0, 0.18);
 }
 
@@ -448,6 +448,111 @@ a {
     content: "— ";
 }
 
+.careers-poster .about-poster__tile img {
+    filter: none;
+}
+
+.careers-poster .about-poster__tile::after {
+    content: none;
+}
+
+.careers-editorial {
+    min-height: 180svh;
+}
+
+.careers-editorial__heading {
+    margin: 0;
+    color: #665723;
+    font-family: neue-haas-grotesk-display, sans-serif;
+    font-size: clamp(1.35rem, 2.1vw, 2.25rem);
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.15;
+}
+
+.careers-editorial__heading .type-serif {
+    display: inline;
+    font-weight: 600;
+}
+
+.careers-list {
+    width: min(100%, 42rem);
+    margin-top: clamp(3rem, 5vw, 5rem);
+}
+
+.careers-job {
+    padding: clamp(1.4rem, 2.5vw, 2.2rem) 0;
+    border-top: 1px solid rgba(102, 87, 35, 0.36);
+}
+
+.careers-job:last-child {
+    border-bottom: 1px solid rgba(102, 87, 35, 0.36);
+}
+
+.careers-job h3 {
+    max-width: 34rem;
+    margin: 0;
+    color: #665723;
+    font-family: neue-haas-grotesk-display, sans-serif;
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.05;
+}
+
+.careers-job__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 1rem;
+    margin-top: 0.85rem;
+}
+
+.careers-job__meta p + p {
+    margin-top: 0;
+}
+
+.careers-job__meta p,
+.careers-job li {
+    font-size: clamp(0.86rem, 1.08vw, 1rem);
+    line-height: 1.4;
+}
+
+.careers-job__meta p:not(:last-child)::after {
+    content: "·";
+    margin-left: 1rem;
+}
+
+.careers-job ul {
+    display: grid;
+    gap: 0.4rem;
+    margin: 1.2rem 0 0;
+    padding-left: 1.1rem;
+}
+
+.careers-job__apply {
+    display: inline-block;
+    margin-top: 1.3rem;
+    color: #665723;
+    font-size: clamp(0.9rem, 1.08vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.careers-job__apply span {
+    font-family: ivyora-display, serif;
+    font-weight: 400;
+}
+
+.careers-job__apply:hover,
+.careers-job__apply:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+}
+
 @keyframes about-page-in {
     from {
         opacity: 0;
@@ -555,6 +660,15 @@ a {
     .about-editorial {
         min-height: auto;
         padding: clamp(3.2rem, 12vw, 5rem) 14px 4rem;
+    }
+
+    .careers-job__meta {
+        display: grid;
+        gap: 0.1rem;
+    }
+
+    .careers-job__meta p:not(:last-child)::after {
+        content: none;
     }
 
     .about-editorial h1 {

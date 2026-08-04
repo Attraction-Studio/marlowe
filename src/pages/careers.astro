@@ -1,0 +1,138 @@
+---
+import '../styles/about.css';
+import Seo from '../components/Seo.astro';
+import hiringImage from '../images/hiring_ad.jpg';
+
+const jobs = [
+	{
+		title: 'Waitstaff, Bartenders & Front of House Team',
+		location: 'Christchurch Central, Canterbury',
+		type: 'Full time',
+		pay: '$23 – $28 per hour',
+		benefits: [
+			'Join Marlowe’s opening team and help shape the restaurant from day one',
+			'Ongoing training across food, wine, cocktails and exceptional service',
+			'Full-time, part-time and casual opportunities with genuine room to grow',
+		],
+		url: 'https://nz.seek.com/job/93704544?ref=search-standalone&type=standard&origin=jobTitle#sol=569728636816d262ff59a73624de47fa78b38f47',
+	},
+	{
+		title: 'Bar Manager',
+		location: 'Christchurch Central, Canterbury',
+		type: 'Full time',
+		pay: '$28 – $34 per hour',
+		benefits: [
+			'Be part of an exciting new restaurant from day one.',
+			'Work with exceptional producers and premium beverages',
+			'Lead the bar, shape the beverage program, mentor your team',
+		],
+		url: 'https://nz.seek.com/job/93704568?ref=search-standalone&type=standard&origin=jobTitle#sol=a17c0133359f55ee4b88e2b875f4c40aa884e948',
+	},
+	{
+		title: 'Pastry Chef',
+		location: 'Christchurch Central, Canterbury',
+		type: 'Full time',
+		pay: '$28 – $35 per hour',
+		benefits: [
+			'Help shape Marlowe’s pastry and dessert offering from day one',
+			'Work alongside an experienced, ambitious and supportive kitchen team',
+			'Genuine creative input, professional development and room to grow',
+		],
+		url: 'https://nz.seek.com/job/93704556?ref=search-standalone&type=standard&origin=jobTitle#sol=b51b3063485a40f098b1e10dfe8c51972ebb5a39',
+	},
+];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="https://use.typekit.net/duj0xcr.css" />
+		<meta name="viewport" content="width=device-width" />
+		<Seo
+			title="Careers at Marlowe | Join Our Opening Team"
+			description="Explore hospitality careers at Marlowe, opening this September on High Street in Christchurch."
+			path="/careers/"
+		/>
+	</head>
+	<body class="about-page careers-page">
+		<header class="about-header" aria-label="Careers page header">
+			<a class="about-header__link" href="/" data-about-exit>Back <span>Home</span></a>
+			<a class="about-header__logo" href="/" aria-label="Marlowe home" data-about-exit>
+				<span aria-hidden="true"></span>
+			</a>
+			<a
+				class="about-header__link about-header__link--right"
+				href="https://nz.seek.com/jobs?advertiserid=63803631"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				View All <span>Listings</span>
+			</a>
+		</header>
+
+		<main class="about-story" aria-label="Careers at Marlowe">
+			<section class="about-poster careers-poster" aria-label="Marlowe careers artwork">
+				<div class="about-poster__tiles" aria-hidden="true">
+					<figure class="about-poster__tile">
+						<img src={hiringImage.src} width={hiringImage.width} height={hiringImage.height} alt="" />
+					</figure>
+				</div>
+			</section>
+
+			<section class="about-editorial careers-editorial" aria-label="Marlowe careers and current vacancies">
+				<div class="about-editorial__copy">
+					<h1 class="careers-editorial__heading">
+						Marlowe is <span class="type-serif">opening</span> on High Street this September, and we’re looking for the people who will work across our dining room and <span class="type-serif">bar</span>.
+					</h1>
+					<div class="about-editorial__divider" aria-hidden="true"></div>
+					<p>
+						Marlowe has been created by people who have spent their careers in <span class="type-serif">hospitality</span> and who will remain closely involved in its day-to-day operation. The people making the decisions will also be the people in the <span class="type-serif">kitchen</span>, on the floor, behind the bar and at the pass each day.
+					</p>
+					<p>
+						Hospitality has been considered from the very beginning: how guests are <span class="type-serif">welcomed</span>, how the restaurant moves through the day and how it feels to work here.
+					</p>
+					<p>
+						We want Marlowe to feel <span class="type-serif">warm, familiar</span> and confidently looked after. Polished, but never formal for the sake of it.
+					</p>
+
+					<div class="careers-list" aria-label="Current vacancies">
+						<h2 class="about-editorial__section-heading"><span>Current</span> Vacancies</h2>
+						{jobs.map((job) => (
+							<article class="careers-job">
+								<h3>{job.title}</h3>
+								<div class="careers-job__meta">
+									<p>{job.location}</p>
+									<p>{job.type}</p>
+									<p>{job.pay}</p>
+								</div>
+								<ul>
+									{job.benefits.map((benefit) => <li>{benefit}</li>)}
+								</ul>
+								<a class="careers-job__apply" href={job.url} target="_blank" rel="noopener noreferrer">
+									Apply <span>Now</span>
+								</a>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+		</main>
+		<span class="about-wordmark" aria-hidden="true"></span>
+
+		<script>
+			document.querySelectorAll('[data-about-exit]').forEach((link) => {
+				link.addEventListener('click', (event) => {
+					const href = link.getAttribute('href');
+					if (!href) return;
+
+					event.preventDefault();
+					window.sessionStorage?.setItem('marloweTransition', 'to-home');
+					document.body.dataset.aboutExit = 'true';
+					window.setTimeout(() => {
+						window.location.href = href;
+					}, 520);
+				});
+			});
+		</script>
+	</body>
+</html>
