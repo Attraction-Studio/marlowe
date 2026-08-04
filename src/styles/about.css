@@ -671,8 +671,9 @@ a {
         content: none;
     }
 
-    .about-editorial h1 {
-        font-size: clamp(3rem, 15vw, 4.8rem);
+    .about-editorial h2,
+    .careers-editorial__heading {
+        font-size: clamp(1.25rem, 5.4vw, 1.5rem);
     }
 
     .about-editorial__detail,
