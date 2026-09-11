@@ -2,45 +2,6 @@
 import '../styles/about.css';
 import Seo from '../components/Seo.astro';
 import hiringImage from '../images/hiring_ad.jpg';
-
-const jobs = [
-	{
-		title: 'Waitstaff, Bartenders & Front of House Team',
-		location: 'Christchurch Central, Canterbury',
-		type: 'Full time',
-		pay: '$23 – $28 per hour',
-		benefits: [
-			'Join Marlowe’s opening team and help shape the restaurant from day one',
-			'Ongoing training across food, wine, cocktails and exceptional service',
-			'Full-time, part-time and casual opportunities with genuine room to grow',
-		],
-		url: 'https://nz.seek.com/job/93704544?ref=search-standalone&type=standard&origin=jobTitle#sol=569728636816d262ff59a73624de47fa78b38f47',
-	},
-	{
-		title: 'Bar Manager',
-		location: 'Christchurch Central, Canterbury',
-		type: 'Full time',
-		pay: '$28 – $34 per hour',
-		benefits: [
-			'Be part of an exciting new restaurant from day one.',
-			'Work with exceptional producers and premium beverages',
-			'Lead the bar, shape the beverage program, mentor your team',
-		],
-		url: 'https://nz.seek.com/job/93704568?ref=search-standalone&type=standard&origin=jobTitle#sol=a17c0133359f55ee4b88e2b875f4c40aa884e948',
-	},
-	{
-		title: 'Pastry Chef',
-		location: 'Christchurch Central, Canterbury',
-		type: 'Full time',
-		pay: '$28 – $35 per hour',
-		benefits: [
-			'Help shape Marlowe’s pastry and dessert offering from day one',
-			'Work alongside an experienced, ambitious and supportive kitchen team',
-			'Genuine creative input, professional development and room to grow',
-		],
-		url: 'https://nz.seek.com/job/93704556?ref=search-standalone&type=standard&origin=jobTitle#sol=b51b3063485a40f098b1e10dfe8c51972ebb5a39',
-	},
-];
 ---
 
 <html lang="en">
@@ -58,8 +19,8 @@ const jobs = [
 		<link rel="stylesheet" href="https://use.typekit.net/duj0xcr.css" />
 		<meta name="viewport" content="width=device-width" />
 		<Seo
-			title="Careers at Marlowe | Join Our Opening Team"
-			description="Explore hospitality careers at Marlowe, opening this September on High Street in Christchurch."
+			title="Careers at Marlowe | Join Our Team"
+			description="Learn about hospitality careers at Marlowe on High Street in Christchurch and get in touch with our team."
 			path="/careers/"
 		/>
 	</head>
@@ -75,11 +36,9 @@ const jobs = [
 			</a>
 			<a
 				class="about-header__link about-header__link--right"
-				href="https://nz.seek.com/jobs?advertiserid=63803631"
-				target="_blank"
-				rel="noopener noreferrer"
+				href="mailto:santiago@marlowe.co.nz?subject=Careers%20at%20Marlowe"
 			>
-				View All <span>Listings</span>
+				Get <span>In Touch</span>
 			</a>
 		</header>
 
@@ -94,6 +53,7 @@ const jobs = [
 
 			<section class="about-editorial careers-editorial" aria-label="Marlowe careers and current vacancies">
 				<div class="about-editorial__copy">
+
 					<h1 class="careers-editorial__heading">
 						Marlowe is <span class="type-serif">opening</span> on High Street this September, and we’re looking for the people who will work across our dining room and <span class="type-serif">bar</span>.
 					</h1>
@@ -107,25 +67,24 @@ const jobs = [
 					<p>
 						We want Marlowe to feel <span class="type-serif">warm, familiar</span> and confidently looked after. Polished, but never formal for the sake of it.
 					</p>
+					<p>
+						We’re always looking for <span class="type-serif">talented, thoughtful</span> people who care about great food, warm service and making guests feel at home. If Marlowe sounds like the kind of place you’d like to work, we’d love to hear from you.
+					</p>
 
-					<div class="careers-list" aria-label="Current vacancies">
-						<h2 class="about-editorial__section-heading"><span>Current</span> Vacancies</h2>
-						{jobs.map((job) => (
-							<article class="careers-job">
-								<h3>{job.title}</h3>
-								<div class="careers-job__meta">
-									<p>{job.location}</p>
-									<p>{job.type}</p>
-									<p>{job.pay}</p>
-								</div>
-								<ul>
-									{job.benefits.map((benefit) => <li>{benefit}</li>)}
-								</ul>
-								<a class="careers-job__apply" href={job.url} target="_blank" rel="noopener noreferrer">
-									Apply <span>Now</span>
+					<div class="about-editorial__details" aria-label="Contact Marlowe">
+						<h3 class="about-editorial__section-heading"><span>Contact</span> Us</h3>
+						<div class="about-editorial__detail">
+							<h3>General</h3>
+							<p><a href="mailto:santiago@marlowe.co.nz?subject=Careers%20at%20Marlowe">santiago@marlowe.co.nz</a></p>
+						</div>
+						<div class="about-editorial__detail">
+							<h3>Follow Us</h3>
+							<p>
+								<a href="https://www.instagram.com/marloweonhigh" target="_blank" rel="noopener noreferrer">
+									Instagram
 								</a>
-							</article>
-						))}
+							</p>
+						</div>
 					</div>
 				</div>
 			</section>

@@ -173,23 +173,13 @@ const frames = frameFolders.map((folder) =>
 		<aside class="menu-panel" id="explore-panel" aria-label="Explore Marlowe menus" aria-hidden="true">
 			<nav class="menu-panel__inner" aria-label="Explore Marlowe menus">
 				<div class="menu-panel__links" data-explore-track>
-					<a
-						class="menu-panel__item"
-						href="https://marlowe.wrapped.store/gift-card/marlowe-gift-card"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="Purchase a Marlowe gift card (opens in a new tab)"
-						style="--item-index: 0;"
-					>
-						<span class="menu-panel__label">Gift Cards</span>
-					</a>
-					<button class="menu-panel__item" type="button" data-explore-item="about" style="--item-index: 1;">
+					<button class="menu-panel__item" type="button" data-explore-item="about" style="--item-index: 0;">
 						<span class="menu-panel__label">About Us</span>
 					</button>
-					<a class="menu-panel__item" href="/careers" style="--item-index: 2;">
+					<a class="menu-panel__item" href="/careers" style="--item-index: 1;">
 						<span class="menu-panel__label">Careers</span>
 					</a>
-					<button class="menu-panel__item" type="button" data-explore-item="enquiries" style="--item-index: 3;">
+					<button class="menu-panel__item" type="button" data-explore-item="enquiries" style="--item-index: 2;">
 						<span class="menu-panel__label">Contact</span>
 					</button>
 				</div>
@@ -307,14 +297,12 @@ const frames = frameFolders.map((folder) =>
 			</div>
 		</aside>
 		<footer class="site-footer" aria-label="Site footer">
-			<div class="site-footer__contacts">
-				<a class="site-footer__contact site-footer__contact--right" target="_blank" href="https://www.instagram.com/marloweonhigh">Follow <span class="text-serif">us</span></a>
-				<a class="site-footer__contact" href="mailto:santiago@marlowe.co.nz?subject=General%20Enquiry">General <span class="text-serif">Enquiries</span></a>
+			<div class="site-footer__contacts" aria-label="Quick links">
+				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/marloweonhigh">Follow <span class="text-serif">us</span></a>
+				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://www.sevenrooms.com/explore/marlowechristchurch/reservations/create/search/">Bookings</a>
+				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://marlowe.wrapped.store/gift-card/marlowe-gift-card">Gift <span class="text-serif">cards</span></a>
 			</div>
 			<p class="site-footer__centre">
-				<span class="site-footer__notice" aria-label="Bookings coming soon">
-					<span>Bookings Coming Soon</span>
-				</span>
 				<span class="site-footer__address">
 					211 HIGH STREET<br />
 					CHRISTCHURCH, <span class="text-serif">NEW ZEALAND</span><br />
