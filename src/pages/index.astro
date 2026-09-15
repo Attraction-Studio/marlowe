@@ -120,15 +120,14 @@ const frames = frameFolders.map((folder) =>
 			<a class="site-logo" href="/" aria-label="Marlowe">
 				<span class="site-logo__mark" aria-hidden="true"></span>
 			</a>
-			<button
-				class="site-link site-link--button site-link--right"
-				type="button"
-				aria-controls="event-panel"
-				aria-expanded="false"
-				data-event-toggle
+			<a
+				class="site-link site-link--right"
+				href="https://www.sevenrooms.com/explore/marlowechristchurch/reservations/create/search/"
+				target="_blank"
+				rel="noopener noreferrer"
 			>
-				WHAT'S <span class="text-serif">ON</span>
-			</button>
+				BOOKINGS
+			</a>
 		</header>
 		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
 			<section
@@ -299,7 +298,15 @@ const frames = frameFolders.map((folder) =>
 		<footer class="site-footer" aria-label="Site footer">
 			<div class="site-footer__contacts" aria-label="Quick links">
 				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/marloweonhigh">Follow <span class="text-serif">us</span></a>
-				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://www.sevenrooms.com/explore/marlowechristchurch/reservations/create/search/">Bookings</a>
+				<button
+					class="site-footer__contact"
+					type="button"
+					aria-controls="event-panel"
+					aria-expanded="false"
+					data-event-toggle
+				>
+					What's <span class="text-serif">On</span>
+				</button>
 				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://marlowe.wrapped.store/gift-card/marlowe-gift-card">Gift <span class="text-serif">cards</span></a>
 			</div>
 			<p class="site-footer__centre">
