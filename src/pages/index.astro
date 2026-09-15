@@ -126,7 +126,7 @@ const frames = frameFolders.map((folder) =>
 				target="_blank"
 				rel="noopener noreferrer"
 			>
-				BOOKINGS
+				MAKE <span class="text-serif">RESERVATION</span>
 			</a>
 		</header>
 		<main class="mosaic-shell" aria-label="Interactive natural-size image mosaic">
@@ -297,17 +297,18 @@ const frames = frameFolders.map((folder) =>
 		</aside>
 		<footer class="site-footer" aria-label="Site footer">
 			<div class="site-footer__contacts" aria-label="Quick links">
-				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/marloweonhigh">Follow <span class="text-serif">us</span></a>
+				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/marloweonhigh">FOLLOW <span class="text-serif">US</span></a>
 				<button
 					class="site-footer__contact"
 					type="button"
+					hidden
 					aria-controls="event-panel"
 					aria-expanded="false"
 					data-event-toggle
 				>
-					What's <span class="text-serif">On</span>
+					WHAT'S <span class="text-serif">ON</span>
 				</button>
-				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://marlowe.wrapped.store/gift-card/marlowe-gift-card">Gift <span class="text-serif">cards</span></a>
+				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://marlowe.wrapped.store/gift-card/marlowe-gift-card">GIFT <span class="text-serif">CARDS</span></a>
 			</div>
 			<p class="site-footer__centre">
 				<span class="site-footer__address">
@@ -358,7 +359,7 @@ const frames = frameFolders.map((folder) =>
 			function setToggleState(toggles, isOpen) {
 				toggles.forEach((toggle) => {
 					toggle.setAttribute('aria-expanded', String(isOpen));
-					toggle.innerHTML = isOpen ? 'CLOSE' : toggle.dataset.closedLabel;
+				toggle.innerHTML = isOpen ? 'CLOSE' : toggle.dataset.closedLabel;
 				});
 			}
 
