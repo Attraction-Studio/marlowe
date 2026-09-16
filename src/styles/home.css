@@ -1130,14 +1130,15 @@ body[data-explore-open="true"] #explore-panel .menu-panel__preview,
     filter: saturate(0.92) contrast(1.03);
 }
 
-.menu-panel__coming-soon {
+.menu-panel__downloads {
     position: relative;
     z-index: 2;
     display: grid;
+    gap: clamp(1.5rem, 4vh, 3rem);
     margin: 0;
     color: #665723;
-    font-size: clamp(4.2rem, 10vw, 10.8rem);
-    line-height: 0.78;
+    font-size: clamp(2rem, 3vw, 3.75rem);
+    line-height: 1.1;
     letter-spacing: 0;
     text-align: center;
     text-transform: none;
@@ -1148,17 +1149,51 @@ body[data-explore-open="true"] #explore-panel .menu-panel__preview,
             transform 680ms cubic-bezier(0.16, 0.84, 0.22, 1) 180ms;
 }
 
-.menu-panel__coming-soon span {
-    display: block;
+.menu-panel__downloads a {
+    color: inherit;
+    text-decoration: none;
 }
 
-.menu-panel__coming-soon-word {
-    font-style: italic;
-    transform: translateX(0.08em) rotate(-2deg);
-    transform-origin: center;
+.menu-panel__downloads .text-serif {
+    font-style: normal;
 }
 
-body[data-menu-open="true"] #menu-panel .menu-panel__coming-soon {
+.menu-panel__download-preview {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + clamp(24px, 4vw, 72px));
+    width: min(25vw, 320px);
+    height: auto;
+    max-height: 60svh;
+    object-fit: contain;
+    box-shadow: 0 18px 45px rgba(49, 24, 17, 0.18);
+    opacity: 0;
+    transform: translate3d(-12px, -46%, 0) rotate(3deg) scale(0.92);
+    transition: opacity 180ms ease, transform 300ms cubic-bezier(0.16, 0.84, 0.22, 1);
+    pointer-events: none;
+}
+
+@media (min-width: 821px) {
+    .menu-panel__downloads a:hover .menu-panel__download-preview,
+    .menu-panel__downloads a:focus-visible .menu-panel__download-preview {
+        opacity: 1;
+        transform: translate3d(0, -50%, 0) rotate(3deg) scale(1);
+    }
+}
+
+.menu-panel__downloads a:hover,
+.menu-panel__downloads a:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+}
+
+.menu-panel__downloads a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 8px;
+}
+
+body[data-menu-open="true"] #menu-panel .menu-panel__downloads {
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(-0.4deg) scale(1);
 }
@@ -1502,7 +1537,7 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     .explore-panel__section[data-explore-content="careers"] .explore-panel__role:nth-of-type(2),
-    .contact-panel__row:nth-of-type(2) {
+    .contact-panel__row:last-child {
         padding-bottom: 250px;
     }
 
@@ -1591,8 +1626,12 @@ body[data-event-open="true"] .event-panel__content {
         padding: 90px 16px 88px;
     }
 
-    .menu-panel__coming-soon {
-        font-size: clamp(4.4rem, 19vw, 7.4rem);
+    .menu-panel__downloads {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .menu-panel__download-preview {
+        display: none;
     }
 
     .event-panel__inner {

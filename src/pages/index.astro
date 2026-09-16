@@ -2,6 +2,8 @@
 import '../styles/home.css';
 import Seo from '../components/Seo.astro';
 import aboutOwnersLandscape from '../images/about/Olly Le Maitre and Santiago Burgos Landscape.webp';
+import lunchPreview from '../images/menus/lunch-preview.webp';
+import dinnerPreview from '../images/menus/dinner-preview.webp';
 
 const rows = 4;
 const columns = 5;
@@ -161,12 +163,18 @@ const frames = frameFolders.map((folder) =>
 				))}
 			</section>
 		</main>
-		<aside class="menu-panel" id="menu-panel" aria-label="Marlowe menu" aria-hidden="true">
-			<nav class="menu-panel__inner menu-panel__inner--image" aria-label="Marlowe menu status">
-				<p class="menu-panel__coming-soon">
-					<span>Coming</span>
-					<span class="text-serif menu-panel__coming-soon-word">Soon</span>
-				</p>
+		<aside class="menu-panel" id="menu-panel" aria-label="Marlowe menu" aria-hidden="true" inert>
+			<nav class="menu-panel__inner menu-panel__inner--image" aria-label="Marlowe menus">
+				<div class="menu-panel__downloads">
+					<a href="/menus/marlowe_lunch_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Lunch menu (PDF, opens in a new tab)">
+						Lunch <span class="text-serif">Menu</span>
+						<img class="menu-panel__download-preview" src={lunchPreview.src} width={lunchPreview.width} height={lunchPreview.height} alt="" aria-hidden="true" />
+					</a>
+					<a href="/menus/marlowe_dinner_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Dinner menu (PDF, opens in a new tab)">
+						Dinner <span class="text-serif">Menu</span>
+						<img class="menu-panel__download-preview" src={dinnerPreview.src} width={dinnerPreview.width} height={dinnerPreview.height} alt="" aria-hidden="true" />
+					</a>
+				</div>
 			</nav>
 		</aside>
 		<aside class="menu-panel" id="explore-panel" aria-label="Explore Marlowe menus" aria-hidden="true">
@@ -233,6 +241,10 @@ const frames = frameFolders.map((folder) =>
 											Instagram
 										</a>
 									</p>
+								</div>
+								<div class="contact-panel__row">
+									<h3>Call Us</h3>
+									<p><a href="tel:+6433651750">03 365 1750</a></p>
 								</div>
 							</div>
 						</div>
@@ -309,6 +321,7 @@ const frames = frameFolders.map((folder) =>
 					WHAT'S <span class="text-serif">ON</span>
 				</button>
 				<a class="site-footer__contact" target="_blank" rel="noopener noreferrer" href="https://marlowe.wrapped.store/gift-card/marlowe-gift-card">GIFT <span class="text-serif">CARDS</span></a>
+				<a class="site-footer__contact" href="tel:+6433651750">CALL <span class="text-serif">US</span></a>
 			</div>
 			<p class="site-footer__centre">
 				<span class="site-footer__address">
@@ -424,6 +437,7 @@ const frames = frameFolders.map((folder) =>
 				}, 860);
 				setToggleState(menuToggles, false);
 				menuPanel?.setAttribute('aria-hidden', 'true');
+				menuPanel?.setAttribute('inert', '');
 			}
 
 			function closeExplore() {
@@ -520,6 +534,7 @@ const frames = frameFolders.map((folder) =>
 						document.body.dataset.menuOpen = 'true';
 						setToggleState(menuToggles, true);
 						menuPanel?.setAttribute('aria-hidden', 'false');
+						menuPanel?.removeAttribute('inert');
 					}
 				});
 			});
