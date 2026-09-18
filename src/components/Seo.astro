@@ -24,7 +24,6 @@ const canonicalUrl = new URL(path, SITE_URL).toString();
 const imageUrl = new URL(image, SITE_URL).toString();
 ---
 
-<title>{title}</title>
 <meta name="description" content={description} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonicalUrl} />
