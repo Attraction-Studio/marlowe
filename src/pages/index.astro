@@ -4,6 +4,7 @@ import Seo from '../components/Seo.astro';
 import aboutOwnersLandscape from '../images/about/Olly Le Maitre and Santiago Burgos Landscape.webp';
 import lunchPreview from '../images/menus/lunch-preview.webp';
 import dinnerPreview from '../images/menus/dinner-preview.webp';
+import banquetPreview from '../images/menus/banquet-preview.webp';
 
 const rows = 4;
 const columns = 5;
@@ -176,6 +177,10 @@ const frames = frameFolders.map((folder) =>
 					<a href="/menus/marlowe_dinner_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Dinner menu (PDF, opens in a new tab)">
 						Dinner <span class="text-serif">Menu</span>
 						<img class="menu-panel__download-preview" src={dinnerPreview.src} width={dinnerPreview.width} height={dinnerPreview.height} alt="" aria-hidden="true" />
+					</a>
+					<a href="/menus/marlowe_banquet_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Banquet menu (PDF, opens in a new tab)">
+						Banquet <span class="text-serif">Menu</span>
+						<img class="menu-panel__download-preview" src={banquetPreview.src} width={banquetPreview.width} height={banquetPreview.height} alt="" aria-hidden="true" />
 					</a>
 				</div>
 			</nav>
