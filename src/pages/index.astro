@@ -4,6 +4,7 @@ import Seo from '../components/Seo.astro';
 import aboutOwnersLandscape from '../images/about/Olly Le Maitre and Santiago Burgos Landscape.webp';
 import lunchPreview from '../images/menus/lunch-preview.webp';
 import dinnerPreview from '../images/menus/dinner-preview.webp';
+import drinksPreview from '../images/menus/drinks-preview.webp';
 import banquetPreview from '../images/menus/banquet-preview.webp';
 
 const rows = 4;
@@ -170,16 +171,20 @@ const frames = frameFolders.map((folder) =>
 		<aside class="menu-panel" id="menu-panel" aria-label="Marlowe menu" aria-hidden="true" inert>
 			<nav class="menu-panel__inner menu-panel__inner--image" aria-label="Marlowe menus">
 				<div class="menu-panel__downloads">
-					<a href="/menus/marlowe_lunch_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Lunch menu (PDF, opens in a new tab)">
-						Lunch <span class="text-serif">Menu</span>
+					<a href="/menus/marlowe_lunch_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Lunch (PDF, opens in a new tab)">
+						Lunch
 						<img class="menu-panel__download-preview" src={lunchPreview.src} width={lunchPreview.width} height={lunchPreview.height} alt="" aria-hidden="true" />
 					</a>
-					<a href="/menus/marlowe_dinner_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Dinner menu (PDF, opens in a new tab)">
-						Dinner <span class="text-serif">Menu</span>
+					<a href="/menus/marlowe_dinner_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Dinner (PDF, opens in a new tab)">
+						Dinner
 						<img class="menu-panel__download-preview" src={dinnerPreview.src} width={dinnerPreview.width} height={dinnerPreview.height} alt="" aria-hidden="true" />
 					</a>
-					<a href="/menus/marlowe_banquet_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Banquet menu (PDF, opens in a new tab)">
-						Banquet <span class="text-serif">Menu</span>
+					<a href="/menus/marlowe_drinks_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Drinks (PDF, opens in a new tab)">
+						Drinks
+						<img class="menu-panel__download-preview" src={drinksPreview.src} width={drinksPreview.width} height={drinksPreview.height} alt="" aria-hidden="true" />
+					</a>
+					<a href="/menus/marlowe_banquet_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Banquet (PDF, opens in a new tab)">
+						Banquet
 						<img class="menu-panel__download-preview" src={banquetPreview.src} width={banquetPreview.width} height={banquetPreview.height} alt="" aria-hidden="true" />
 					</a>
 				</div>
