@@ -52,7 +52,7 @@ The palette should stay dark, warm, and low contrast outside the cream text.
 Current values:
 
 - Page/background base: `#111`.
-- Mosaic gutter/background: `#181411`.
+- Mosaic gutter/background: `#fff7e7`.
 - Shell atmosphere: dark radial and linear gradients around `#070707`, `#1a1510`, and `#0b0a08`.
 - Primary text: `#fff7e7`.
 - Menu panel background: `rgba(255, 247, 231, 0.92)`.
@@ -77,17 +77,21 @@ The current type system uses Adobe Typekit:
 Primary UI font:
 
 ```css
-font-family: neue-haas-grotesk-display, sans-serif;
-font-weight: 500;
-font-style: normal;
+.primary-ui-font {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
 ```
 
 Display/logo font:
 
 ```css
-font-family: ivyora-display, serif;
-font-weight: 400;
-font-style: normal;
+.display-font {
+  font-family: ivyora-display, serif;
+  font-weight: 400;
+  font-style: normal;
+}
 ```
 
 Current usage:

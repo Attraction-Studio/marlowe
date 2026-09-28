@@ -271,7 +271,7 @@ body[data-event-open="true"] .site-footer__centre {
     padding: var(--mosaic-padding);
     overflow: hidden;
     isolation: isolate;
-    background: #181411;
+    background: #fff7e7;
     box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
     z-index: 5;
     transition:
@@ -1457,7 +1457,7 @@ body[data-event-open="true"] .event-panel__content {
     }
 
     #explore-panel .menu-panel__links {
-        align-self: left;
+        align-self: flex-start;
         width: fit-content;
         min-height: 0;
         margin-left: 0;
