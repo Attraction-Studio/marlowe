@@ -4,6 +4,7 @@ import Seo from '../components/Seo.astro';
 import aboutOwnersLandscape from '../images/about/Olly Le Maitre and Santiago Burgos Landscape.webp';
 import lunchPreview from '../images/menus/lunch-preview.webp';
 import dinnerPreview from '../images/menus/dinner-preview.webp';
+import snacksPreview from '../images/menus/snacks-preview.webp';
 import drinksPreview from '../images/menus/drinks-preview.webp';
 import banquetPreview from '../images/menus/banquet-preview.webp';
 
@@ -179,13 +180,17 @@ const frames = frameFolders.map((folder) =>
 						Dinner
 						<img class="menu-panel__download-preview" src={dinnerPreview.src} width={dinnerPreview.width} height={dinnerPreview.height} alt="" aria-hidden="true" />
 					</a>
-					<a href="/menus/marlowe_drinks_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Drinks (PDF, opens in a new tab)">
-						Drinks
-						<img class="menu-panel__download-preview" src={drinksPreview.src} width={drinksPreview.width} height={drinksPreview.height} alt="" aria-hidden="true" />
+					<a href="/menus/marlowe_snacks_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Snacks (PDF, opens in a new tab)">
+						Snacks
+						<img class="menu-panel__download-preview" src={snacksPreview.src} width={snacksPreview.width} height={snacksPreview.height} alt="" aria-hidden="true" />
 					</a>
 					<a href="/menus/marlowe_banquet_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Banquet (PDF, opens in a new tab)">
 						Banquet
 						<img class="menu-panel__download-preview" src={banquetPreview.src} width={banquetPreview.width} height={banquetPreview.height} alt="" aria-hidden="true" />
+					</a>
+					<a href="/menus/marlowe_drinks_menu.pdf" target="_blank" rel="noopener noreferrer" aria-label="Drinks (PDF, opens in a new tab)">
+						Drinks
+						<img class="menu-panel__download-preview" src={drinksPreview.src} width={drinksPreview.width} height={drinksPreview.height} alt="" aria-hidden="true" />
 					</a>
 				</div>
 			</nav>
