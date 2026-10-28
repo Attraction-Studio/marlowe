@@ -1,4 +1,9 @@
 {
+	"git": {
+    "deploymentEnabled": {
+      "dependabot/**": false
+    }
+  },
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"trailingSlash": true,
 	"headers": [
